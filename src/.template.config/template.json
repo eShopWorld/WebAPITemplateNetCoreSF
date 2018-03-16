@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json.schemastore.org/template",
+	"author": "Oisin Haken",
+	"classifications": [ "Web", "WebAPI" ],
+	"identity": "Eshopworld.WebAPI.Template",
+	"name": "EshopWorld Web API Service Fabric hosted ASP.NET Core 2 template",
+	"shortName": "ESWWebAPI",
+	 "symbols": 
+	 {
+		"APIName": 
+		{
+			"type": "parameter",
+			"datatype": "string",			
+			"replaces": "WebAPIService",
+			"fileRename": "WebAPIService",
+			"isRequired": true
+		},
+		"APIPortNumber": 
+		{
+			"type": "parameter",
+			"datatype": "integer",
+			"isRequired": true,
+			"replaces": "WebAPIServicePort"
+		}
+	},
+
+	"sources": [
+		{
+			"source": "./content",
+			"exclude": [ "**/.vs/**", "**/packages/**" ]			
+		}
+]
+}

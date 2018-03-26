@@ -7,6 +7,13 @@ Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "WebAPIService.Fabric", "Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService", "WebAPIService\WebAPIService.csproj", "{C71A0D61-B7F1-4A88-BF77-A57F9535371A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5815314C-19FA-4746-8FE6-006713BC3072}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\readme.md = ..\..\readme.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIService.Tests", "WebAPIService.Tests\WebAPIService.Tests.csproj", "{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +38,14 @@ Global
 		{C71A0D61-B7F1-4A88-BF77-A57F9535371A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C71A0D61-B7F1-4A88-BF77-A57F9535371A}.Release|x64.ActiveCfg = Release|Any CPU
 		{C71A0D61-B7F1-4A88-BF77-A57F9535371A}.Release|x64.Build.0 = Release|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Debug|x64.Build.0 = Debug|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Release|x64.ActiveCfg = Release|Any CPU
+		{3E47DC2B-CBAB-4E9F-9648-FF291EE0F5CD}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,9 +2,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 
-namespace Web1
+namespace WebAPIService
 {
     internal static class Program
     {
@@ -21,9 +20,9 @@ namespace Web1
                 // an instance of the class is created in this host process.
 
                 ServiceRuntime.RegisterServiceAsync("WebAPIServiceType",
-                    context => new Web1(context)).GetAwaiter().GetResult();
+                    context => new WebAPIService(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Web1).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebAPIService).Name);
 
                 // Prevents this host process from terminating so services keeps running. 
                 Thread.Sleep(Timeout.Infinite);

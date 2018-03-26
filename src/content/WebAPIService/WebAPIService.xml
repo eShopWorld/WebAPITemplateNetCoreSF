@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPIService</name>
+    </assembly>
+    <members>
+        <member name="M:WebAPIService.Controllers.ValuesController.Get">
+            <summary>
+            GET implementation for default route
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIService.Program.Main">
+            <summary>
+            This is the entry point of the service host process.
+            </summary>
+        </member>
+        <member name="T:WebAPIService.ServiceConfigurationOptions">
+            <summary>
+            The configuration settings for this service
+            
+            NOTE - consider moving this to DevOps
+            </summary>
+        </member>
+        <member name="P:WebAPIService.ServiceConfigurationOptions.RequiredScopes">
+            <summary>
+            The scopes to assert on the Api
+            </summary>
+        </member>
+        <member name="P:WebAPIService.ServiceConfigurationOptions.Authority">
+            <summary>
+            The Authority base address
+            </summary>
+        </member>
+        <member name="P:WebAPIService.ServiceConfigurationOptions.ApiName">
+            <summary>
+            The Api name
+            </summary>
+        </member>
+        <member name="P:WebAPIService.ServiceConfigurationOptions.ApiSecret">
+            <summary>
+            The Api secret
+            </summary>
+        </member>
+        <member name="P:WebAPIService.ServiceConfigurationOptions.Origins">
+            <summary>
+            The list of CORS origins
+            </summary>
+        </member>
+        <member name="P:WebAPIService.ServiceConfigurationOptions.IsHttps">
+            <summary>
+            Indicates if the service should require https
+            </summary>
+        </member>
+        <member name="T:WebAPIService.WebAPIService">
+            <summary>
+            The FabricRuntime creates an instance of this class for each service type instance. 
+            </summary>
+        </member>
+        <member name="M:WebAPIService.WebAPIService.CreateServiceInstanceListeners">
+            <summary>
+            Optional override to create listeners (like tcp, http) for this service instance.
+            </summary>
+            <returns>The collection of listeners.</returns>
+        </member>
+    </members>
+</doc>

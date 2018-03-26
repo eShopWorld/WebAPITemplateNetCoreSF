@@ -160,7 +160,7 @@ $LocalFolder = (Split-Path $MyInvocation.MyCommand.Path)
 
 if (!$PublishProfileFile)
 {
-    $PublishProfileFile = "$LocalFolder\..\PublishProfiles\Local.xml"
+    $PublishProfileFile = "$LocalFolder\..\PublishProfiles\Development.xml"
 }
 
 if (!$ApplicationPackagePath)

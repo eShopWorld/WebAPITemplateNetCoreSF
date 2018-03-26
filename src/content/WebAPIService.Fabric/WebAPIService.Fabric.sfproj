@@ -20,16 +20,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ApplicationPackageRoot\ApplicationManifest.xml" />
-    <None Include="ApplicationParameters\Cloud.xml" />
-    <None Include="ApplicationParameters\Local.1Node.xml" />
-    <None Include="ApplicationParameters\Local.5Node.xml" />
-    <None Include="PublishProfiles\Cloud.xml" />
-    <None Include="PublishProfiles\Local.1Node.xml" />
-    <None Include="PublishProfiles\Local.5Node.xml" />
+    <None Include="ApplicationParameters\CI.xml" />
+    <None Include="ApplicationParameters\Production.xml" />
+    <None Include="ApplicationParameters\PreProd.xml" />
+    <None Include="ApplicationParameters\Test.xml" />
+    <None Include="ApplicationParameters\Sand.xml" />
+    <None Include="ApplicationParameters\Development.xml" />
+    <None Include="PublishProfiles\Test.xml" />
+    <None Include="PublishProfiles\PreProd.xml" />
+    <None Include="PublishProfiles\Production.xml" />
+    <None Include="PublishProfiles\Sand.xml" />
+    <None Include="PublishProfiles\CI.xml" />
+    <None Include="PublishProfiles\Development.xml" />
     <None Include="Scripts\Deploy-FabricApplication.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="PublishProfiles\Local.1Node.xml" />
+    <Content Include="PublishProfiles\Local.5Node.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPIService\WebAPIService.csproj" />

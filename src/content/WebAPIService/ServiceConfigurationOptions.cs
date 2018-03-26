@@ -27,12 +27,7 @@ namespace WebAPIService
         /// <summary>
         /// The Api secret
         /// </summary>
-        public string ApiSecret { get; set; }
-
-        /// <summary>
-        /// The list of CORS origins
-        /// </summary>
-        public List<string> Origins { get; set; } = new List<string>();
+        public string ApiSecret { get; set; }     
 
         /// <summary>
         /// Indicates if the service should require https

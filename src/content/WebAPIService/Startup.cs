@@ -17,6 +17,9 @@ using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebAPIService
 {
+    /// <summary>
+    /// Startup class for ASP.NET runtime
+    /// </summary>
     public class Startup
     {
         private readonly TelemetrySettings _telemetrySettings = new TelemetrySettings();
@@ -25,6 +28,10 @@ namespace WebAPIService
 
         private const string CorsPolicyName = "CorsPolicy";
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="env">hosting environment</param>
         public Startup(IHostingEnvironment env)
         {
             _configuration = EswDevOpsSdk.BuildConfiguration(env.ContentRootPath, env.EnvironmentName);
@@ -32,7 +39,11 @@ namespace WebAPIService
             _bb = new BigBrother(_telemetrySettings.InstrumentationKey, _telemetrySettings.InternalKey);
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// configure services to be used by the asp.net runtime
+        /// </summary>
+        /// <param name="services">service collection</param>
+        /// <returns>service provider instance (Autofac provider)</returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             try
@@ -63,16 +74,7 @@ namespace WebAPIService
                             Name = "Authorization",
                             Type = "apiKey"
                         });
-                });
-
-                services.AddCors(options =>
-                {
-                    options.AddPolicy(CorsPolicyName,
-                        policyConfigure => policyConfigure.WithOrigins(serviceConfigurationOptions.Value.Origins.ToArray())
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials());
-                });
+                });              
 
                 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(x =>
                 {
@@ -100,7 +102,11 @@ namespace WebAPIService
             }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+       /// <summary>
+       /// configure asp.net pipeline
+       /// </summary>
+       /// <param name="app">application builder</param>
+       /// <param name="env">environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseBigBrotherExceptionHandler();

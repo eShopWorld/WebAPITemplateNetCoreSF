@@ -4,8 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIService.Controllers
 {
+    /// <summary>
+    /// sample controller
+    /// </summary>
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize]    
     public class ValuesController : Controller
     {
 
@@ -19,26 +22,40 @@ namespace WebAPIService.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Get with Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
+        /// <summary>
+        /// post
+        /// </summary>
+        /// <param name="value"></param>
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Put
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

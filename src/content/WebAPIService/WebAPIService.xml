@@ -4,11 +4,42 @@
         <name>WebAPIService</name>
     </assembly>
     <members>
+        <member name="T:WebAPIService.Controllers.ValuesController">
+            <summary>
+            sample controller
+            </summary>
+        </member>
         <member name="M:WebAPIService.Controllers.ValuesController.Get">
             <summary>
             GET implementation for default route
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:WebAPIService.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            Get with Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIService.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            post
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:WebAPIService.Controllers.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            Put
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:WebAPIService.Controllers.ValuesController.Delete(System.Int32)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id"></param>
         </member>
         <member name="M:WebAPIService.Program.Main">
             <summary>
@@ -42,15 +73,35 @@
             The Api secret
             </summary>
         </member>
-        <member name="P:WebAPIService.ServiceConfigurationOptions.Origins">
-            <summary>
-            The list of CORS origins
-            </summary>
-        </member>
         <member name="P:WebAPIService.ServiceConfigurationOptions.IsHttps">
             <summary>
             Indicates if the service should require https
             </summary>
+        </member>
+        <member name="T:WebAPIService.Startup">
+            <summary>
+            Startup class for ASP.NET runtime
+            </summary>
+        </member>
+        <member name="M:WebAPIService.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="env">hosting environment</param>
+        </member>
+        <member name="M:WebAPIService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            configure services to be used by the asp.net runtime
+            </summary>
+            <param name="services">service collection</param>
+            <returns>service provider instance (Autofac provider)</returns>
+        </member>
+        <member name="M:WebAPIService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            configure asp.net pipeline
+            </summary>
+            <param name="app">application builder</param>
+            <param name="env">environment</param>
         </member>
         <member name="T:WebAPIService.WebAPIService">
             <summary>

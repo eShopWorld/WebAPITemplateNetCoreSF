@@ -26,8 +26,6 @@ namespace WebAPIService
         private readonly IBigBrother _bb;
         private readonly IConfigurationRoot _configuration;
 
-        private const string CorsPolicyName = "CorsPolicy";
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -85,7 +83,7 @@ namespace WebAPIService
                     //TODO: this requires Eshopworld.Beatles.Security to be refactored
                     //x.AddJwtBearerEventsTelemetry(bb); 
                 });                             
-
+               
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
                 builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
@@ -108,11 +106,14 @@ namespace WebAPIService
        /// <param name="app">application builder</param>
        /// <param name="env">environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+       {
             app.UseBigBrotherExceptionHandler();
-            app.UseSwagger();
-            app.UseSwaggerUI(o => o.SwaggerEndpoint("v1/swagger.json", "WebAPIService"));
-            //app.UseCors(CorsPolicyName);
+            app.UseSwagger(o => o.RouteTemplate="sw/{documentName}/swagger.json");
+            app.UseSwaggerUI(o =>
+            {
+                o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
+                o.RoutePrefix = "sw";              
+            });
             app.UseAuthentication();
             app.UseMvc();
                         

@@ -5,12 +5,14 @@
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <DocumentationFile>WebAPIService.xml</DocumentationFile>
+    <StartupObject>WebAPIService.Program</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <NoWarn>1701;1702;1705</NoWarn>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

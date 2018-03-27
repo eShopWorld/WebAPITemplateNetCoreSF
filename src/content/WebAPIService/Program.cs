@@ -1,7 +1,9 @@
-﻿using Microsoft.ServiceFabric.Services.Runtime;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
+using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace WebAPIService
 {
@@ -14,6 +16,15 @@ namespace WebAPIService
         {
             try
             {
+#if DEBUGNOFABRIC
+
+                 var host = WebHost.CreateDefaultBuilder()
+                    .UseStartup<Startup>()                       
+                    .Build();
+
+                host.Run();                
+
+#else
                 // The ServiceManifest.XML file defines one or more service type names.
                 // Registering a service maps a service type name to a .NET type.
                 // When Service Fabric creates an instance of this service type,
@@ -26,6 +37,7 @@ namespace WebAPIService
 
                 // Prevents this host process from terminating so services keeps running. 
                 Thread.Sleep(Timeout.Infinite);
+#endif
             }
             catch (Exception e)
             {

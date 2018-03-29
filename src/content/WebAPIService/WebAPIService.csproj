@@ -5,6 +5,7 @@
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <DocumentationFile>WebAPIService.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <StartupObject>WebAPIService.Program</StartupObject>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
@@ -55,5 +56,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <Target Name="IncludeDocFile" BeforeTargets="PrepareForPublish">
+    <ItemGroup Condition=" '$(DocumentationFile)' != '' ">
+      <_DocumentationFile Include="$(DocumentationFile)" />
+      <ContentWithTargetPath Include="@(_DocumentationFile->'%(FullPath)')" RelativePath="%(_DocumentationFile.Identity)" TargetPath="%(_DocumentationFile.Filename)%(_DocumentationFile.Extension)" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+  </Target>
 
 </Project>

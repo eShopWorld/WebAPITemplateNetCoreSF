@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
-    <DocumentationFile>bin\x64\Debug\netcoreapp2.0\win7-x64\WebAPIService.xml</DocumentationFile>
+    <DocumentationFile>xmldoco\WebAPIService.xml</DocumentationFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <StartupObject>WebAPIService.Program</StartupObject>
     <Platforms>AnyCPU;x64</Platforms>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Eshopworld.WebAPIFabric.Template</id>
+    <version>1.0.0</version>
+    <description>
+      template for c# web api project hosted on Service Fabric
+    </description>
+    <authors>Oisin Haken</authors>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+</package>

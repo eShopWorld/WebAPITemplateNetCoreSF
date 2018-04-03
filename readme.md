@@ -23,3 +23,10 @@ The other (post generation) attributes are
 
 To install (and uninstall) the template please follow https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x. Pay particular attention to -i and -u switches
 
+e.g dotnet new -i Eshopworld.WebAPI.Template (or download the nuget package and then use the path to it)
+
+# Generate content
+
+after the implate is installed, run the following in the target folder
+
+dotnet new ESWWebAPI --APIName {put name here} --APIPortNumber {put port here}

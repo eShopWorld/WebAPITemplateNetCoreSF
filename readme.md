@@ -23,3 +23,14 @@ The other (post generation) attributes are
 
 To install (and uninstall) the template please follow https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore2x. Pay particular attention to -i and -u switches
 
+e.g dotnet new -i Eshopworld.WebAPIFabric.Template (or download the nuget package and then use the path to it) - this package is available at github-dev feed of eshopworld.myget.org
+
+# Generate content
+
+after the implate is installed, run the following in the target folder
+
+dotnet new ESWWebAPI --APIName {put name here} --APIPortNumber {put port here}
+
+# Known "issues"
+
+ - we support debugging API project as standalone app (rather then Fabric one). The API's Program.cs contains commented out code for compiler directive DEBUGNOFABRIC - the code had to be commented out since it was being removed by dotnet new template engine (for reasons of that they themselves use compilation directive to inject/remove code and driven by template options - https://github.com/dotnet/templating/issues/1497

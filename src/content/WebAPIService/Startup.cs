@@ -60,7 +60,7 @@ namespace WebAPIService
 
                 services.AddSwaggerGen(c =>
                 {
-                    c.IncludeXmlComments("WebAPIService.xml");
+                    c.IncludeXmlComments("xmldoco\\WebAPIService.xml");
                     c.DescribeAllEnumsAsStrings();
                     c.SwaggerDoc("v1", new Info { Version = "1.0.0", Title = "WebAPIService" });
                     c.CustomSchemaIds(x => x.FullName);

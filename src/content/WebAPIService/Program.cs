@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using Eshopworld.Telemetry;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.ServiceFabric.Services.Runtime;
@@ -32,9 +33,9 @@ namespace WebAPIService
                    // an instance of the class is created in this host process.
 
                    ServiceRuntime.RegisterServiceAsync("WebAPIServiceType",
-                    context => new WebAPIService(context)).GetAwaiter().GetResult();
+                    context => new WebApiService(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebAPIService).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebApiService).Name);
 
                 // Prevents this host process from terminating so services keeps running. 
                 Thread.Sleep(Timeout.Infinite);
@@ -43,7 +44,7 @@ namespace WebAPIService
             }
             catch (Exception e)
             {
-                ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
+                BigBrother.Write(e);
                 throw;
             }
         }

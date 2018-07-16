@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
 
 namespace WebAPIService
 {
@@ -62,7 +63,7 @@ namespace WebAPIService
                 {
                     c.IncludeXmlComments("xmldoco\\WebAPIService.xml");
                     c.DescribeAllEnumsAsStrings();
-                    c.SwaggerDoc("v1", new Info { Version = "1.0.0", Title = "WebAPIService" });
+                    c.SwaggerDoc("v1", new Info { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
                     c.CustomSchemaIds(x => x.FullName);
                     c.AddSecurityDefinition("Bearer",
                         new ApiKeyScheme

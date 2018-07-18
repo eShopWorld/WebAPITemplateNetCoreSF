@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,50 +16,77 @@ namespace WebAPIService.Controllers
         /// <summary>
         /// GET implementation for default route
         /// </summary>
-        /// <returns></returns>
+        /// <returns>see response code to response type metadata, list of all values</returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [ProducesResponseType(typeof(string[]), (int) HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await Task.FromResult(new JsonResult(new string[] { "value1", "value2" }));
         }
 
         /// <summary>
         /// Get with Id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>see response code to response type metadata, individual value for a given id</returns>
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            return await Task.FromResult(new JsonResult("value"));
         }
 
         /// <summary>
         /// post
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">payload</param>
+        /// <returns>action result</returns>
         [HttpPost]
-        public void Post([FromBody]string value)
+        [ProducesResponseType((int) HttpStatusCode.OK)]
+        [ProducesResponseType((int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        public async Task<IActionResult> Post([FromBody]string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+                return await Task.FromResult(BadRequest());
+            else
+                return await Task.FromResult(Ok());
         }
 
         /// <summary>
         /// Put
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="value"></param>
+        /// <param name="id">id to process</param>
+        /// <param name="value">payload</param>
+        /// <returns>action result</returns>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        public async Task<IActionResult> Put(int id, [FromBody]string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+                return await Task.FromResult(BadRequest());
+            else
+                return await Task.FromResult(Ok());
         }
 
         /// <summary>
         /// Delete
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">id to delete</param>
+        /// <returns>action result</returns>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        public async Task<IActionResult> Delete(int id)
         {
+            return await Task.FromResult(Ok());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Core;
@@ -73,6 +74,11 @@ namespace WebAPIService
                             Name = "Authorization",
                             Type = "apiKey"
                         });
+
+                    c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                    {
+                        { "Bearer", Array.Empty<string>() }
+                    });
                 });              
 
                 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(x =>

@@ -29,4 +29,8 @@ e.g dotnet new -i Eshopworld.WebAPIFabric.Template (or download the nuget packag
 
 after the implate is installed, run the following in the target folder
 
-dotnet new ESWWebAPI --APIName {put name here} --APIPortNumber {put port here}
+``` shell
+mkdir {put solution name here}
+cd {put solution name here}
+dotnet new ESWWebAPI --APIName {put API name here} --APIPortNumber {put port here}
+```

@@ -2,9 +2,11 @@
 
 This template requires two levels of configuration 
 
-- parameters for template execution
-- parameters to set after the content has been generated - there are several reasons for these - limitations of current .net CLI and its ability to parse/process complex values, their business value (they are likely not known at the initial stages of the project) and also their overall number (and the absence of defaults) would make the
-items to configure
+- parameters for template execution.
+- parameters to set after the content has been generated<sup>1</sup>.
+
+
+<sup>1</sup> There are several reasons for these - limitations of current .net CLI and its ability to parse/process complex values, their business value (they are likely not known at the initial stages of the project) and also their overall number (and the absence of defaults).
 
 Template recognizes two required params
 

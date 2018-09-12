@@ -27,7 +27,7 @@ e.g dotnet new -i Eshopworld.WebAPIFabric.Template (or download the nuget packag
 
 # Generate content
 
-after the implate is installed, run the following:
+after the template is installed, run the following:
 
 ``` shell
 mkdir {put solution name here}

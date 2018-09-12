@@ -5,9 +5,6 @@ This template requires two levels of configuration
 - parameters for template execution.
 - parameters to set after the content has been generated<sup>1</sup>.
 
-
-<sup>1</sup> There are several reasons for these - limitations of current .net CLI and its ability to parse/process complex values, their business value (they are likely not known at the initial stages of the project) and also their overall number (and the absence of defaults).
-
 Template recognizes two required params
 
 - APIName - name of the API e.g. Fraud.API
@@ -65,3 +62,9 @@ Uninstall the template locally
 dotnet new -u [path to the dir of the .template.config file]
 
 ```
+
+
+<sup>1</sup> There are several reasons for setting parameters after the fact: 
+1. Limitations of current .net CLI
+1. It's ability to parse/process complex values.
+1. Their business value (they are likely not known at the initial stages of the project)1. Their overall number (and the absence of defaults).

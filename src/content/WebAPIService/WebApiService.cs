@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Fabric;
 using System.IO;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.ServiceFabric;
+using Microsoft.ApplicationInsights.ServiceFabric.Module;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
@@ -35,7 +38,10 @@ namespace WebAPIService
                                     .UseKestrel()
                                     .ConfigureServices(
                                         services => services
-                                            .AddSingleton(serviceContext))
+                                            .AddSingleton(serviceContext)
+                                            .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext))
+                                            .AddSingleton<ITelemetryModule>(new ServiceRemotingDependencyTrackingTelemetryModule())
+                                            .AddSingleton<ITelemetryModule>(new ServiceRemotingRequestTrackingTelemetryModule()))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)

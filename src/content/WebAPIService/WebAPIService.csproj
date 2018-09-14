@@ -4,10 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
     <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
-    <DocumentationFile>xmldoco\redfield.xml</DocumentationFile>
+    <DocumentationFile>xmldoco\WebAPIService.xml</DocumentationFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Platform>x64</Platform>
-    <Version>1.0.0.$(DOTTED_BUILD_BUILDNUMBER)</Version>
+    <Version>1.0.0$(DOTTED_BUILD_BUILDNUMBER)</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

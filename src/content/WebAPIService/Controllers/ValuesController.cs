@@ -8,10 +8,9 @@ namespace WebAPIService.Controllers
     /// <summary>
     /// sample controller
     /// </summary>
+    [Produces("application/json")]
     [Route("api/[controller]")]
-#if (!OAUTH_OFF_MODE)
     [Authorize]
-#endif
     public class ValuesController : Controller
     {
 

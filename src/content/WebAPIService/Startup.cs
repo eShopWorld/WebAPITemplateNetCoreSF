@@ -90,6 +90,24 @@ namespace WebAPIService
         }
 
         /// <summary>
+        /// configure asp.net pipeline
+        /// </summary>
+        /// <param name="app">application builder</param>
+        /// <param name="env">environment</param>
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseBigBrotherExceptionHandler();
+            app.UseSwagger(o => o.RouteTemplate = "swagger/{documentName}/swagger.json");
+            app.UseSwaggerUI(o =>
+            {
+                o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
+                o.RoutePrefix = "swagger";
+            });
+            app.UseAuthentication();
+            app.UseMvc();
+        }
+
+        /// <summary>
         /// Adds swagger to the endpoints of the app only if the document xml file is created and in the correct path
         /// </summary>
         /// <param name="services"></param>
@@ -134,25 +152,6 @@ namespace WebAPIService
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
             return File.Exists(xmlPath) ? (true, xmlPath) : (false, string.Empty);
-        }
-
-        /// <summary>
-        /// configure asp.net pipeline
-        /// </summary>
-        /// <param name="app">application builder</param>
-        /// <param name="env">environment</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            app.UseBigBrotherExceptionHandler();
-            app.UseSwagger(o => o.RouteTemplate = "swagger/{documentName}/swagger.json");
-            app.UseSwaggerUI(o =>
-            {
-                o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
-                o.RoutePrefix = "swagger";
-            });
-            app.UseAuthentication();
-            app.UseMvc();
-
         }
     }
 }

@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebAPIService
 {
@@ -59,14 +60,11 @@ namespace WebAPIService
                 {
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
 
-                    if (EnvironmentHelper.IsInFabric)
-                    {
-                        options.Filters.Add(new AuthorizeFilter(policy));
-                    }
-                    else
-                    {
-                        options.Filters.Add(new AllowAnonymousFilter());
-                    }
+                    var filter = EnvironmentHelper.IsInFabric ? 
+                        (IFilterMetadata) new AuthorizeFilter(policy): 
+                        new AllowAnonymousFilter();
+
+                    options.Filters.Add(filter);
                 });
 
                 //Get XML documentation

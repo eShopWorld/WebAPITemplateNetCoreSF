@@ -58,7 +58,15 @@ namespace WebAPIService
                 services.AddMvc(options =>
                 {
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
-                    options.Filters.Add(new AuthorizeFilter(policy));
+
+                    if (EnvironmentHelper.IsInFabric)
+                    {
+                        options.Filters.Add(new AuthorizeFilter(policy));
+                    }
+                    else
+                    {
+                        options.Filters.Add(new AllowAnonymousFilter());
+                    }
                 });
 
                 //Get XML documentation
@@ -93,15 +101,16 @@ namespace WebAPIService
                     });
                 }
 
-                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(x =>
-                {
-                    x.ApiName = serviceConfigurationOptions.Value.ApiName;
-                    x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
-                    x.Authority = serviceConfigurationOptions.Value.Authority;
-                    x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
-                    //TODO: this requires Eshopworld.Beatles.Security to be refactored
-                    //x.AddJwtBearerEventsTelemetry(bb); 
-                });
+                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(
+                    x =>
+                    {
+                        x.ApiName = serviceConfigurationOptions.Value.ApiName;
+                        x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
+                        x.Authority = serviceConfigurationOptions.Value.Authority;
+                        x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
+                        //TODO: this requires Eshopworld.Beatles.Security to be refactored
+                        //x.AddJwtBearerEventsTelemetry(bb); 
+                    });
 
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
@@ -133,7 +142,9 @@ namespace WebAPIService
                 o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
                 o.RoutePrefix = "swagger";
             });
+
             app.UseAuthentication();
+
             app.UseMvc();
         }
     }

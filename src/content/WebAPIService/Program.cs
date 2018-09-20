@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using Eshopworld.Telemetry;
+using Eshopworld.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.ServiceFabric.Services.Runtime;
@@ -17,14 +18,14 @@ namespace WebAPIService
         {
             try
             {
-                if (IsSf)
+                if (EnvironmentHelper.IsInFabric)
                 {
                     // The ServiceManifest.XML file defines one or more service type names.
                     // Registering a service maps a service type name to a .NET type.
                     // When Service Fabric creates an instance of this service type,
                     // an instance of the class is created in this host process.
 
-                    ServiceRuntime.RegisterServiceAsync("greenfieldType",
+                    ServiceRuntime.RegisterServiceAsync("WebAPIServiceType",
                         context => new WebApiService(context)).GetAwaiter().GetResult();
 
                     ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebApiService).Name);
@@ -45,19 +46,6 @@ namespace WebAPIService
             {
                 BigBrother.Write(e);
                 throw;
-            }
-        }
-
-        /// <summary>
-        /// Determines if you are running in Service Fabric or not
-        /// </summary>
-        private static bool IsSf
-        {
-            get
-            {
-                var sfAppName = Environment.GetEnvironmentVariable("Fabric_ApplicationName");
-                var isSf = sfAppName != null;
-                return isSf;
             }
         }
     }

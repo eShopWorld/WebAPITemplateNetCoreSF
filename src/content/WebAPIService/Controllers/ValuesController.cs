@@ -13,7 +13,6 @@ namespace WebAPIService.Controllers
     [Authorize]
     public class ValuesController : Controller
     {
-
         /// <summary>
         /// GET implementation for default route
         /// </summary>

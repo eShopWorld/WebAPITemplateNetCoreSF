@@ -9,6 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService", "WebAPIServ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5815314C-19FA-4746-8FE6-006713BC3072}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\.gitignore = ..\..\.gitignore
 		..\..\readme.md = ..\..\readme.md
 	EndProjectSection
 EndProject

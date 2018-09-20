@@ -66,6 +66,7 @@ namespace WebAPIService
 
                     options.Filters.Add(filter);
                 });
+                services.AddApiVersioning();
 
                 //Get XML documentation
                 var path = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");

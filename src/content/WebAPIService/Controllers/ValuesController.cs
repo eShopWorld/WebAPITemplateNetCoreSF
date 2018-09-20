@@ -9,7 +9,8 @@ namespace WebAPIService.Controllers
     /// sample controller
     /// </summary>
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
     public class ValuesController : Controller
     {
@@ -22,7 +23,7 @@ namespace WebAPIService.Controllers
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> Get()
         {
-            return await Task.FromResult(new JsonResult(new string[] { "value1", "value2" }));
+            return await Task.FromResult(new JsonResult(new[] { "value1", "value2" }));
         }
 
         /// <summary>

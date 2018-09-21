@@ -5,9 +5,10 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5815314C-19FA-4746-8FE6-006713BC3072}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\.gitignore = ..\..\.gitignore
+		.gitignore = .gitignore
 		codecoverage.runsettings = codecoverage.runsettings
-		..\..\readme.md = ..\..\readme.md
+		src\nuget.config = src\nuget.config
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9E6E7CFD-C545-4A74-964B-30CD284A0BBB}"

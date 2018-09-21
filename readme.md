@@ -53,7 +53,7 @@ http://localhost/api/v2/values
 
 In code for a version 1 (v1) controller this looks like the following:
 
-```c#
+```c# 
     [Produces("application/json")]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]

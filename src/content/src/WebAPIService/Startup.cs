@@ -122,7 +122,7 @@ namespace WebAPIService
             }
             catch (Exception e)
             {
-                _bb.Publish(e.ToExceptionEvent());
+                _bb.Publish(e.ToBbEvent());
                 throw;
             }
         }

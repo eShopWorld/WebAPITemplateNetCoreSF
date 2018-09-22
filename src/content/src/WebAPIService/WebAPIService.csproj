@@ -26,7 +26,7 @@
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
     <PackageReference Include="Eshopworld.DevOps" Version="1.0.6" />
-    <PackageReference Include="Eshopworld.Telemetry" Version="2.0.0" />
+    <PackageReference Include="Eshopworld.Telemetry" Version="1.0.1" />
     <PackageReference Include="Eshopworld.Web" Version="1.0.3" />
     <PackageReference Include="IdentityServer4" Version="2.2.0" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />

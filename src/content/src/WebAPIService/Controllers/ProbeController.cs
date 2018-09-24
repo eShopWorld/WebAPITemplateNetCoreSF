@@ -8,8 +8,8 @@ namespace WebAPIService.Controllers
     /// </summary>
     ///
     [ApiVersionNeutral]
-    [Produces("application/json")]
     [Route("[controller]")]
+    [Produces("application/json")]
     [AllowAnonymous]
     public class ProbeController : Controller
     {

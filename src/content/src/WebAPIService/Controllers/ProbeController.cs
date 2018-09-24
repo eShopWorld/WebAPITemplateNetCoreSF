@@ -6,6 +6,8 @@ namespace WebAPIService.Controllers
     /// <summary>
     /// health probe controller
     /// </summary>
+    ///
+    [ApiVersionNeutral]
     [Produces("application/json")]
     [Route("[controller]")]
     [AllowAnonymous]

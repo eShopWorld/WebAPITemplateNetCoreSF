@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Core;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebAPIService
 {
@@ -47,7 +49,7 @@ namespace WebAPIService
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             try
-            {                
+            {
                 services.AddApplicationInsightsTelemetry(_telemetrySettings.InstrumentationKey);
                 services.Configure<ServiceConfigurationOptions>(_configuration.GetSection("ServiceConfigurationOptions"));
 
@@ -57,40 +59,58 @@ namespace WebAPIService
                 services.AddMvc(options =>
                 {
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
-                    options.Filters.Add(new AuthorizeFilter(policy));
+
+                    var filter = EnvironmentHelper.IsInFabric ? 
+                        (IFilterMetadata) new AuthorizeFilter(policy): 
+                        new AllowAnonymousFilter();
+
+                    options.Filters.Add(filter);
                 });
+                services.AddApiVersioning();
 
-                services.AddSwaggerGen(c =>
+                //Get XML documentation
+                var path = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+
+                //if not generated throw an event but it's not going to stop the app from starting
+                if (!File.Exists(path))
                 {
-                    c.IncludeXmlComments("xmldoco\\WebAPIService.xml");
-                    c.DescribeAllEnumsAsStrings();
-                    c.SwaggerDoc("v1", new Info { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
-                    c.CustomSchemaIds(x => x.FullName);
-                    c.AddSecurityDefinition("Bearer",
-                        new ApiKeyScheme
-                        {
-                            In = "header",
-                            Description = "Please insert JWT with Bearer into field",
-                            Name = "Authorization",
-                            Type = "apiKey"
-                        });
-
-                    c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                    BigBrother.Write(new Exception("Swagger XML document has not been included in the project"));
+                }
+                else
+                {
+                    services.AddSwaggerGen(c =>
                     {
-                        { "Bearer", Array.Empty<string>() }
-                    });
-                });              
+                        c.IncludeXmlComments(path);
+                        c.DescribeAllEnumsAsStrings();
+                        c.SwaggerDoc("v1", new Info { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
+                        c.CustomSchemaIds(x => x.FullName);
+                        c.AddSecurityDefinition("Bearer",
+                            new ApiKeyScheme
+                            {
+                                In = "header",
+                                Description = "Please insert JWT with Bearer into field",
+                                Name = "Authorization",
+                                Type = "apiKey"
+                            });
 
-                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(x =>
-                {
-                    x.ApiName = serviceConfigurationOptions.Value.ApiName;
-                    x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
-                    x.Authority = serviceConfigurationOptions.Value.Authority;
-                    x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
-                    //TODO: this requires Eshopworld.Beatles.Security to be refactored
-                    //x.AddJwtBearerEventsTelemetry(bb); 
-                });                             
-               
+                        c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                        {
+                        { "Bearer", Array.Empty<string>() }
+                        });
+                    });
+                }
+
+                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(
+                    x =>
+                    {
+                        x.ApiName = serviceConfigurationOptions.Value.ApiName;
+                        x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
+                        x.Authority = serviceConfigurationOptions.Value.Authority;
+                        x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
+                        //TODO: this requires Eshopworld.Beatles.Security to be refactored
+                        //x.AddJwtBearerEventsTelemetry(bb); 
+                    });
+
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
                 builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
@@ -107,23 +127,24 @@ namespace WebAPIService
             }
         }
 
-       /// <summary>
-       /// configure asp.net pipeline
-       /// </summary>
-       /// <param name="app">application builder</param>
-       /// <param name="env">environment</param>
+        /// <summary>
+        /// configure asp.net pipeline
+        /// </summary>
+        /// <param name="app">application builder</param>
+        /// <param name="env">environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-       {
+        {
             app.UseBigBrotherExceptionHandler();
-            app.UseSwagger(o => o.RouteTemplate="swagger/{documentName}/swagger.json");
+            app.UseSwagger(o => o.RouteTemplate = "swagger/{documentName}/swagger.json");
             app.UseSwaggerUI(o =>
             {
                 o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
-                o.RoutePrefix = "swagger";              
+                o.RoutePrefix = "swagger";
             });
+
             app.UseAuthentication();
+
             app.UseMvc();
-                        
         }
     }
 }

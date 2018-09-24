@@ -8,13 +8,12 @@ namespace WebAPIService.Controllers
     /// <summary>
     /// sample controller
     /// </summary>
-    [Route("api/[controller]")]
-#if (!OAUTH_OFF_MODE)
+    [Produces("application/json")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
-#endif
     public class ValuesController : Controller
     {
-
         /// <summary>
         /// GET implementation for default route
         /// </summary>
@@ -24,7 +23,7 @@ namespace WebAPIService.Controllers
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> Get()
         {
-            return await Task.FromResult(new JsonResult(new string[] { "value1", "value2" }));
+            return await Task.FromResult(new JsonResult(new[] { "value1", "value2" }));
         }
 
         /// <summary>

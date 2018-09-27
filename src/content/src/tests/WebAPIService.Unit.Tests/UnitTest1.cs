@@ -1,14 +1,12 @@
 using Eshopworld.Tests.Core;
 using Xunit;
 
-namespace WebAPIService.Tests
+// ReSharper disable once CheckNamespace
+public class UnitTest1
 {
-    public class UnitTest1
+    [Fact, IsUnit]
+    public void Test1()
     {
-        [Fact, IsUnit]
-        public void Test1()
-        {
 
-        }
     }
 }

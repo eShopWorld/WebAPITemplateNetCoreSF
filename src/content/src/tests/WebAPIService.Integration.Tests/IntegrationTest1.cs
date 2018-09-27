@@ -2,9 +2,9 @@ using Eshopworld.Tests.Core;
 using Xunit;
 
 // ReSharper disable once CheckNamespace
-public class UnitTest1
+public class IntegrationTest1
 {
-    [Fact, IsUnit]
+    [Fact, IsIntegration]
     public void Test1()
     {
 

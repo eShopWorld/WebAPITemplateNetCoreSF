@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.WebTesting;
 using WebAPIService.Performance.Tests.Plugins;
@@ -27,7 +26,6 @@ namespace WebAPIService.Performance.Tests
 
         public override IEnumerator<WebTestRequest> GetRequestEnumerator()
         {
-            //get the env here
             yield return new WebTestRequest(_uri) { Encoding = Encoding.GetEncoding("utf-8") };
         }
     }

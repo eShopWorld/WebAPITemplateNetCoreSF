@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.WebTesting;
+﻿using System;
+using Eshopworld.Web;
+using Microsoft.VisualStudio.TestTools.WebTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting.Rules;
 using WebAPIService.Performance.Tests.ValidationRules;
 
@@ -15,7 +17,7 @@ namespace WebAPIService.Performance.Tests
         /// <summary>
         /// 
         /// </summary>
-        public ProbeTest() : base("http://localhost:23217/Probe")
+        public ProbeTest() : base(Uri)
         {
             if (this.Context.ValidationLevel >= ValidationLevel.High)
             {
@@ -29,5 +31,7 @@ namespace WebAPIService.Performance.Tests
                 this.ValidateResponse += expectedHttpResponseTime.Validate;
             }
         }
+
+        public static string Uri => EnvironmentHelper.IsInFabric ? @"http://localhost:WebAPIServicePort/Probe" : @"http://localhost:23217/Probe";
     }
 }

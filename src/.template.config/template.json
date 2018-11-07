@@ -21,7 +21,15 @@
 			"datatype": "integer",
 			"isRequired": true,
 			"replaces": "WebAPIServicePort"
-		}
+		},
+		"IISExpressAPIPortNumber": 
+		{
+			"type": "parameter",
+			"datatype": "integer",
+			"isRequired": false,
+			"replaces": "IISExpressAPIPortNumber",
+			"defaultValue": "23217"
+		}		
 	},
 
 	"sources": [

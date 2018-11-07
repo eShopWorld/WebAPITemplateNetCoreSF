@@ -4,11 +4,18 @@ using WebAPIService.Performance.Tests.ValidationRules;
 
 namespace WebAPIService.Performance.Tests
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    [CodedWebTest]
     public class ProbeTest : CodedWebTestBase
     {
         //todo env may not work depending on where the test is run from ie in vsts, it won't have this env, so it needs to be settings driven
         //todo it should be fine for local dev envs when it's set to development
-        public ProbeTest() : base("WebAPIService")
+        /// <summary>
+        /// 
+        /// </summary>
+        public ProbeTest() : base("http://localhost:23217/Probe")
         {
             if (this.Context.ValidationLevel >= ValidationLevel.High)
             {

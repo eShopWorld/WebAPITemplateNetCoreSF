@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Plugins\ForceTls12Plugin.cs" />
+    <Compile Include="ProbeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CodedWebTestBase.cs" />
+    <Compile Include="ValidationRules\ValidationResponseRuleExpectedHttpResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AzureProbe.loadtest">

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.WebTesting;
 
 namespace WebAPIService.Performance.Tests.ValidationRules
 {
+    //todo move to core location if doesn't exist already
     /// <summary>
     /// Simple validator to check the response of the app and print out the error message it not HTTP 200 in the response
     /// </summary>

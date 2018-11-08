@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.WebTesting;
 
 namespace WebAPIService.Performance.Tests.Plugins
 {
+    //todo move to core location if does not exist already and expose
     /// <summary>
     /// This class will override the Security Protocol being used by the Performance Web Test to TLS 1.2
     /// </summary>

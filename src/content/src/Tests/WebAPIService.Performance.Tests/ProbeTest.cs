@@ -1,5 +1,4 @@
 ﻿using System;
-using Eshopworld.Web;
 using Microsoft.VisualStudio.TestTools.WebTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting.Rules;
 using WebAPIService.Performance.Tests.ValidationRules;
@@ -32,6 +31,6 @@ namespace WebAPIService.Performance.Tests
             }
         }
 
-        public static string Uri => EnvironmentHelper.IsInFabric ? @"http://localhost:WebAPIServicePort/Probe" : @"http://localhost:23217/Probe";
+        public static string Uri => $"{TestingEnvironment.Configuration["Endpoints:WebAPIService"]}/Probe";
     }
 }

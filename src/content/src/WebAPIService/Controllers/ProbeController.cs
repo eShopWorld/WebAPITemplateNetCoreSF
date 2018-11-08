@@ -17,9 +17,9 @@ namespace WebAPIService.Controllers
         /// empty get to serve as health probe endpoint
         /// </summary>
         [HttpGet]
-        public void Get()
+        public OkResult Get()
         {
-            
+            return Ok();
         }
     }
 }

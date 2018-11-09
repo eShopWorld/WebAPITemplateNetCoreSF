@@ -3,6 +3,7 @@ using Eshopworld.Tests.Core;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using WebAPIService.Controllers;
+using WebAPIService.Tests;
 using Xunit;
 
 // ReSharper disable once CheckNamespace

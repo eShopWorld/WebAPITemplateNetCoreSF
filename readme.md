@@ -40,7 +40,7 @@ cd {put solution name here}
 dotnet new ESWWebAPI --APIName {put API name here} --APIPortNumber {put port here}
 ```
 
-# Controller and API Versoning
+# Controller and API Versioning
 
 ASPNet Core provides API versionings conventions in multiple ways. For design and operational reasons versoning is part of the URI contract, eg: http://localhost/api/v1/values
 

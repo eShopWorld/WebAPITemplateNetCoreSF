@@ -19,11 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService", "WebAPIServ
 EndProject
 Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "WebAPIService.Fabric", "WebAPIService.Fabric\WebAPIService.Fabric.sfproj", "{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Unit.Tests", "Tests\WebAPIService.Unit.Tests\WebAPIService.Unit.Tests.csproj", "{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Integration.Tests", "Tests\WebAPIService.Integration.Tests\WebAPIService.Integration.Tests.csproj", "{CEC98E68-24E6-49B9-821D-1065E665A37C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIService.Performance.Tests", "Tests\WebAPIService.Performance.Tests\WebAPIService.Performance.Tests.csproj", "{2821309E-A824-463B-8481-A4E45FCA3BD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Tests", "Tests\WebAPIService.Tests\WebAPIService.Tests.csproj", "{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,18 +46,6 @@ Global
 		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|Any CPU.ActiveCfg = Release|x64
 		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|x64.ActiveCfg = Release|x64
 		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|x64.Build.0 = Release|x64
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}.Debug|x64.ActiveCfg = Debug|x64
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}.Debug|x64.Build.0 = Debug|x64
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}.Release|Any CPU.ActiveCfg = Release|x64
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}.Release|x64.ActiveCfg = Release|x64
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}.Release|x64.Build.0 = Release|x64
-		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Debug|x64.ActiveCfg = Debug|x64
-		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Debug|x64.Build.0 = Debug|x64
-		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Release|Any CPU.ActiveCfg = Release|x64
-		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Release|x64.ActiveCfg = Release|x64
-		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Release|x64.Build.0 = Release|x64
 		{2821309E-A824-463B-8481-A4E45FCA3BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2821309E-A824-463B-8481-A4E45FCA3BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2821309E-A824-463B-8481-A4E45FCA3BD2}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -68,14 +54,19 @@ Global
 		{2821309E-A824-463B-8481-A4E45FCA3BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2821309E-A824-463B-8481-A4E45FCA3BD2}.Release|x64.ActiveCfg = Release|Any CPU
 		{2821309E-A824-463B-8481-A4E45FCA3BD2}.Release|x64.Build.0 = Release|Any CPU
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}.Debug|x64.ActiveCfg = Debug|x64
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}.Debug|x64.Build.0 = Debug|x64
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}.Release|Any CPU.ActiveCfg = Release|x64
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}.Release|x64.ActiveCfg = Release|x64
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D} = {9E6E7CFD-C545-4A74-964B-30CD284A0BBB}
-		{CEC98E68-24E6-49B9-821D-1065E665A37C} = {9E6E7CFD-C545-4A74-964B-30CD284A0BBB}
 		{2821309E-A824-463B-8481-A4E45FCA3BD2} = {9E6E7CFD-C545-4A74-964B-30CD284A0BBB}
+		{B1BB8388-8FB7-4C1D-8129-AE7F160BBB1C} = {9E6E7CFD-C545-4A74-964B-30CD284A0BBB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77372ED2-9DFF-43C3-BD61-A0FF7D71736A}

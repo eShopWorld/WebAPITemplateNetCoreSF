@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIService.Controllers
@@ -11,7 +10,7 @@ namespace WebAPIService.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
-    [Authorize]
+    [Microsoft.AspNetCore.Authorization.Authorize]
     public class ValuesController : Controller
     {
         /// <summary>
@@ -35,10 +34,7 @@ namespace WebAPIService.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> Get(int id)
-        {
-            return await Task.FromResult(new JsonResult("value"));
-        }
+        public async Task<IActionResult> Get(int id) => await Task.FromResult(new JsonResult("value"));
 
         /// <summary>
         /// post

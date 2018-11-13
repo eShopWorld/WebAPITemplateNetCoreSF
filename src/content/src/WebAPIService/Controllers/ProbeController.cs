@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIService.Controllers
 {
@@ -10,16 +9,16 @@ namespace WebAPIService.Controllers
     [ApiVersionNeutral]
     [Route("[controller]")]
     [Produces("application/json")]
-    [AllowAnonymous]
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     public class ProbeController : Controller
     {
         /// <summary>
         /// empty get to serve as health probe endpoint
         /// </summary>
         [HttpGet]
-        public OkResult Get()
+        public StatusCodeResult Get()
         {
-            return Ok();
+            return StatusCode(200);
         }
     }
 }

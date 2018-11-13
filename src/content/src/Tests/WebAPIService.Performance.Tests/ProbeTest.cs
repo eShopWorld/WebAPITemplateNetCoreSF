@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.WebTesting;
+﻿using Microsoft.VisualStudio.TestTools.WebTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting.Rules;
 using WebAPIService.Performance.Tests.ValidationRules;
 

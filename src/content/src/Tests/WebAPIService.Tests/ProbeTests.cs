@@ -1,4 +1,3 @@
-using System.Net;
 using System.Threading.Tasks;
 using Eshopworld.Tests.Core;
 using FluentAssertions;
@@ -17,7 +16,7 @@ public class ProbeTests
 
         var result = controller.Get();
 
-        result.Should().NotBeNull().And.BeOfType<OkResult>();
+        result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
         result.StatusCode.Should().Be(200);
     }
 
@@ -28,8 +27,8 @@ public class ProbeTests
 
         var result = await client.GetAsync($"{TestingEnvironment.Configuration["Endpoints:WebAPIService"]}/Probe");
 
-        result.Should().NotBeNull();
-        result.IsSuccessStatusCode.Should().BeTrue();
+        result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
+        result.StatusCode.Should().Be(200);
 
         var body = await result.Content.ReadAsStringAsync();
         body.Should().BeNullOrEmpty();

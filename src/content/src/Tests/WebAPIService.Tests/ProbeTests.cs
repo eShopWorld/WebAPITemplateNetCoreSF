@@ -1,3 +1,4 @@
+using System.Net;
 using System.Threading.Tasks;
 using Eshopworld.Tests.Core;
 using FluentAssertions;
@@ -7,7 +8,7 @@ using WebAPIService.Tests;
 using Xunit;
 
 // ReSharper disable once CheckNamespace
-public partial class ProbeTests
+public class ProbeTests
 {
     [Fact, IsUnit]
     public void Get_DefaultBehaviour_ReturnsHttp200()
@@ -17,7 +18,7 @@ public partial class ProbeTests
         var result = controller.Get();
 
         result.Should().NotBeNull().And.BeOfType<OkResult>();
-        result.Should().BeNull();
+        result.StatusCode.Should().Be(200);
     }
 
     [Fact, IsIntegration]

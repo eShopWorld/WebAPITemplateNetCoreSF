@@ -7,7 +7,8 @@ using Xunit;
 // ReSharper disable once CheckNamespace
 public class ValuesControllerTests
 {
-    private Xunit.Abstractions.ITestOutputHelper Console;
+    // ReSharper disable once InconsistentNaming
+    private readonly Xunit.Abstractions.ITestOutputHelper Console;
 
     public ValuesControllerTests(Xunit.Abstractions.ITestOutputHelper console)
     {

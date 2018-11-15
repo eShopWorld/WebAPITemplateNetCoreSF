@@ -8,7 +8,7 @@ namespace WebAPIService.Tests
     [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public static class TestingEnvironment
     {
-        private static bool IsBuildServer => File.Exists(Path.Combine(System.Environment.CurrentDirectory, "appsettings.INTEGRATION.json"));
+        private static bool IsBuildServer => File.Exists(Path.Combine(System.Environment.CurrentDirectory, "appsettings.CI.json"));
 
         private static IConfigurationRoot _configuration;
 

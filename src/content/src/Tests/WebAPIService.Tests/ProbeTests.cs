@@ -10,7 +10,7 @@ using Xunit;
 public class ProbeTests
 {
     [Fact, IsUnit]
-    public void Get_DefaultBehaviour_ReturnsHttp200()
+    public void Get_DefaultBehaviour_ReturnsHttp200Unit()
     {
         var controller = new ProbeController();
 
@@ -21,7 +21,7 @@ public class ProbeTests
     }
 
     [Fact, IsIntegration]
-    public async Task Get_DefaultBehaviour_ReturnsContent()
+    public async Task Get_DefaultBehaviour_ReturnsContentIntegration()
     {
         var client = new System.Net.Http.HttpClient();
 

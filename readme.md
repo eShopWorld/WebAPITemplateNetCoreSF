@@ -81,9 +81,7 @@ Template recognizes two required params
 - APIPortNumber - port number e.g. 15000
 
 
-### Generate a new WebAPI from the Template
-
-after the template is installed, run the following:
+After the template is installed, run the following:
 
 ``` shell
 mkdir {put solution name here}

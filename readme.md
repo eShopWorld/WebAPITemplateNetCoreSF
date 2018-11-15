@@ -86,7 +86,7 @@ After the template is installed, run the following:
 ``` shell
 mkdir {put solution name here}
 cd {put solution name here}
-dotnet new ESWWebAPI --apiname {put API name here} --apiportnumber {put port here}
+dotnet new ESWWebAPI --name {put API name here} --port {put port here}
 ```
 
 The port number will need to be known before hand given this is the static port that is used in the Service Fabric. Clarify this with DevOps before you create the template.

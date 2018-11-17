@@ -3,34 +3,39 @@ using Eshopworld.Tests.Core;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using WebAPIService.Controllers;
-using WebAPIService.Tests;
 using Xunit;
 
-// ReSharper disable once CheckNamespace
-public class ProbeTests
+namespace WebAPIService.Tests
 {
-    [Fact, IsUnit]
-    public void Get_DefaultBehaviour_ReturnsHttp200Unit()
+
+
+
+
+    public class ProbeTests
     {
-        var controller = new ProbeController();
+        [Fact, IsUnit]
+        public void Get_DefaultBehaviour_ReturnsHttp200Unit()
+        {
+            var controller = new ProbeController();
 
-        var result = controller.Get();
+            var result = controller.Get();
 
-        result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
-        result.StatusCode.Should().Be(200);
-    }
-    
-    [Fact, IsIntegration]
-    public async Task Get_DefaultBehaviour_ReturnsContentIntegration()
-    {
-        var client = new System.Net.Http.HttpClient();
+            result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
+            result.StatusCode.Should().Be(200);
+        }
 
-        var result = await client.GetAsync($"{TestingEnvironment.Configuration["Endpoints:WebAPIService"]}/Probe");
+        [Fact, IsIntegration]
+        public async Task Get_DefaultBehaviour_ReturnsContentIntegration()
+        {
+            var client = new System.Net.Http.HttpClient();
 
-        result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
-        result.StatusCode.Should().Be(200);
+            var result = await client.GetAsync($"{TestingEnvironment.Configuration["Endpoints:WebAPIService"]}/Probe");
 
-        var body = await result.Content.ReadAsStringAsync();
-        body.Should().BeNullOrEmpty();
+            result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
+            result.StatusCode.Should().Be(200);
+
+            var body = await result.Content.ReadAsStringAsync();
+            body.Should().BeNullOrEmpty();
+        }
     }
 }

@@ -19,7 +19,7 @@ public class ProbeTests
         result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
         result.StatusCode.Should().Be(200);
     }
-
+    
     [Fact, IsIntegration]
     public async Task Get_DefaultBehaviour_ReturnsContentIntegration()
     {

@@ -13,7 +13,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger/index.html",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "CI"
       }
     },
     "WebAPIService": {

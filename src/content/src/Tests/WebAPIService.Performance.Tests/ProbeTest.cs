@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.WebTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.WebTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting.Rules;
 using WebAPIService.Performance.Tests.ValidationRules;
 
@@ -15,7 +16,7 @@ namespace WebAPIService.Performance.Tests
         /// <summary>
         /// 
         /// </summary>
-        public ProbeTest() : base(Uri)
+        public ProbeTest() : base("Localhost")
         {
             if (this.Context.ValidationLevel >= ValidationLevel.High)
             {
@@ -29,7 +30,5 @@ namespace WebAPIService.Performance.Tests
                 this.ValidateResponse += expectedHttpResponseTime.Validate;
             }
         }
-
-        public static string Uri => $"{TestingEnvironment.Configuration["Endpoints:WebAPIService"]}/Probe";
     }
 }

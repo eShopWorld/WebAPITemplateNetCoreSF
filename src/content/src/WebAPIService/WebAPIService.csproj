@@ -61,10 +61,10 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="appsettings.PREP.json">
+    <Content Update="appsettings.Prep.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="appsettings.PROD.json">
+    <Content Update="appsettings.Prod.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="appsettings.SAND.json">

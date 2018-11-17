@@ -9,17 +9,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.Development.json" />
-    <None Remove="appsettings.Integration.json" />
+    <None Remove="appsettings.CI.json" />
     <None Remove="appsettings.json" />
+    <None Remove="appsettings.Prep.json" />
+    <None Remove="appsettings.Prod.json" />
+    <None Remove="appsettings.Sand.json" />
+    <None Remove="appsettings.Test.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.Integration.json">
+    <Content Include="appsettings.Prod.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="appsettings.Development.json">
+    <Content Include="appsettings.Prep.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="appsettings.Sand.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="appsettings.Test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="appsettings.CI.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -41,6 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\WebAPIService.Common\WebAPIService.Common.csproj" />
     <ProjectReference Include="..\..\WebAPIService\WebAPIService.csproj" />
   </ItemGroup>
 

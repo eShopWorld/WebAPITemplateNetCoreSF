@@ -16,7 +16,7 @@ namespace WebAPIService.Performance.Tests
         /// <summary>
         /// 
         /// </summary>
-        public ProbeTest() : base("Localhost")
+        public ProbeTest() : base()
         {
             if (this.Context.ValidationLevel >= ValidationLevel.High)
             {

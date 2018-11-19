@@ -13,7 +13,7 @@ namespace WebAPIService.Performance.Tests
         protected CodedWebTestBase()
         {
             //todo get this from config from env variables
-            _uri = "";
+            _uri = "http://localhost:34567/Probe";
             Setup();
         }
 

@@ -3,60 +3,11 @@
 
 The other (post generation) attributes are
 
-- swagger version (see Startup.cs in the API project)
-- version prefix in swagger endpoint (also in Startup.cs)
-- port in service manifest (see ServiceManifest.xml in API project)
+- Swagger version (see Startup.cs in the API project)
+- Version prefix in Swagger Endpoint (also in Startup.cs)
+- Port in service manifest (see ServiceManifest.xml in API project)
 - AppInsights instrumentation key for the app and the internal one for BigBrother (see appsettings json file corresponding to the target environment (e.g appsettings.Production.json) -see "TBA" values
- - STS configuration - see appsettings json corresponding to the environment - see ServiceConfigurationOptions node and values of "TBA"
-
-# Controller and API Versoning
-
-ASPNet Core provides API versionings conventions in multiple ways. For design and operational reasons versoning is part of the URI contract, eg: http://localhost/api/v1/values
-
-In this case when creating multiple versions, this should follow the following convention:
-
-```
-http://localhost/api/v1/values
-http://localhost/api/v2/values
-```
-
-In code for a version 1 (v1) controller this looks like the following:
-
-```c# 
-    [Produces("application/json")]
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [Authorize]
-    public class ValuesController : Controller
-    {
-        [HttpGet]
-        [ProducesResponseType(typeof(string[]), (int) HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> Get()
-        {
-            return await Task.FromResult(new JsonResult(new[] { "value1", "value2" }));
-        }
-	}
-```
-
-For a version 2 (v2) controller this looks like the following:
-
-```c#
-    [Produces("application/json")]
-    [ApiVersion("2.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [Authorize]
-    public class ValuesController : Controller
-    {
-        [HttpGet]
-        [ProducesResponseType(typeof(string[]), (int) HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> Get()
-        {
-            return await Task.FromResult(new JsonResult(new[] { "value1", "value2" }));
-        }
-	}
-```
+- STS configuration - see appsettings json corresponding to the environment - see ServiceConfigurationOptions node and values of "TBA"
 
 # Installation
 

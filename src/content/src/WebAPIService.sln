@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIService.Performance.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Tests", "Tests\WebAPIService.Tests\WebAPIService.Tests.csproj", "{417BF749-BF56-4B44-A04C-C22E476E20E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIService.Common", "..\WebAPIService.Common\WebAPIService.Common.csproj", "{0BAFA4D4-A5B5-4CF5-8026-D266C469597A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Common", "..\WebAPIService.Common\WebAPIService.Common.csproj", "{0BAFA4D4-A5B5-4CF5-8026-D266C469597A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

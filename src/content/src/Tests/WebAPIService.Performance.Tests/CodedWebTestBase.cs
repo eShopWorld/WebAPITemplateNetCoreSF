@@ -10,9 +10,21 @@ namespace WebAPIService.Performance.Tests
         private readonly string _uri;
         private readonly ForceTls12Plugin _tlsPlugin = new ForceTls12Plugin();
 
-        public CodedWebTestBase(string uri)
+        protected CodedWebTestBase()
+        {
+            //todo get this from config from env variables
+            _uri = "";
+            Setup();
+        }
+
+        protected CodedWebTestBase(string uri)
         {
             _uri = uri;
+            Setup();
+        }
+
+        private void Setup()
+        {
             _tlsPlugin.Enabled = true;
             PreAuthenticate = true;
             Proxy = "default";

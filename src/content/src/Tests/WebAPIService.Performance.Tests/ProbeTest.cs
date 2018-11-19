@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.WebTesting;
 using Microsoft.VisualStudio.TestTools.WebTesting.Rules;
+using WebAPIService.Common;
 using WebAPIService.Performance.Tests.ValidationRules;
 
 namespace WebAPIService.Performance.Tests
@@ -16,8 +20,20 @@ namespace WebAPIService.Performance.Tests
         /// <summary>
         /// 
         /// </summary>
-        public ProbeTest() : base()
+        public ProbeTest()
         {
+            //Directory.GetCurrentDirectory()
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Path.GetDirectoryName(Environment.CurrentDirectory))
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json");
+
+            var config = builder.Build();
+            var _testSettings = new TestSettings();
+            //var eswconfig = EswDevOpsSdk.BuildConfiguration(true);
+            config.GetSection("TestSettings").Bind(_testSettings);
+
             if (this.Context.ValidationLevel >= ValidationLevel.High)
             {
                 var expectedHttpValidationRule = new ValidationResponseRuleExpectedHttpResponse();

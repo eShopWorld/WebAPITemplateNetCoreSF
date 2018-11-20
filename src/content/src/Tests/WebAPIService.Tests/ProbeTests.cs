@@ -20,7 +20,6 @@ namespace WebAPIService.Tests
 
         public ProbeTests()
         {
-            //todo clean this up using the service name rather than LB IP+Port
             _testSettings = new TestSettings();
             var config = EswDevOpsSdk.BuildConfiguration(true);
             config.GetSection("TestSettings").Bind(_testSettings);

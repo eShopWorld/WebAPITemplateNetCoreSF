@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Eshopworld.DevOps;
 using Eshopworld.Tests.Core;
@@ -38,9 +40,12 @@ namespace WebAPIService.Tests
         [Fact, IsIntegration]
         public async Task Get_DefaultBehaviour_ReturnsContentIntegration()
         {
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(_testSettings.ApiUri)
+            };
 
-            var result = await client.GetAsync(_testSettings.ProbeEndpoint);
+            var result = await client.GetAsync("Probe");
 
             result.Should().NotBeNull().And.BeOfType<StatusCodeResult>();
             result.StatusCode.Should().Be(200);

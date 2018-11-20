@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestSettings name="Local" id="7285f41f-fd43-437d-9342-e02f44808ab6" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are default test settings for a local test run.</Description>
-  <Deployment enabled="false" />
+  <Deployment>
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.SAND.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.CI.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.Test.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.PROD.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.PREP.json" />
+  </Deployment>
   <Execution hostProcessPlatform="MSIL">
     <Timeouts runTimeout="1800000" testTimeout="600000" />
     <TestTypeSpecific>

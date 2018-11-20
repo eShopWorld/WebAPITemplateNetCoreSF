@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestSettings name="AzureDevOps" id="d781687c-dbfa-44e8-86de-52b029cf8453" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are default test settings for a local test run.</Description>
-  <Deployment enabled="false" />
+  <Deployment>
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.SAND.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.CI.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.Test.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.PROD.json" />
+    <DeploymentItem filename="Tests\WebAPIService.Performance.Tests\appsettings.PREP.json" />
+  </Deployment>
   <Execution hostProcessPlatform="MSIL">
     <TestTypeSpecific>
       <UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">

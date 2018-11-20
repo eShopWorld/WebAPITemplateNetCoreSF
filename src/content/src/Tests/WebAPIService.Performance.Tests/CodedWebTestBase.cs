@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.WebTesting;
+using WebAPIService.Common;
 using WebAPIService.Performance.Tests.Plugins;
 
 namespace WebAPIService.Performance.Tests
@@ -8,23 +12,44 @@ namespace WebAPIService.Performance.Tests
     public abstract class CodedWebTestBase : WebTest
     {
         private readonly string _uri;
+        private TestSettings _testSettings;
         private readonly ForceTls12Plugin _tlsPlugin = new ForceTls12Plugin();
-
+        
+        /// <summary>
+        /// Takes the path from appsettings.json
+        /// </summary>
         protected CodedWebTestBase()
         {
-            //todo get this from config from env variables
-            _uri = "http://localhost:34567/Probe";
             Setup();
+            _uri = _testSettings.ApiUri;
+
         }
 
-        protected CodedWebTestBase(string uri)
+        /// <summary>
+        /// Takes the base path defined in appsettings.json and combines with supplied path specified
+        /// </summary>
+        /// <param name="path"></param>
+        protected CodedWebTestBase(string path)
         {
-            _uri = uri;
             Setup();
+            _uri = $"{_testSettings.ApiUri}/{path}";
         }
 
+        /// <summary>
+        /// Common setup for the perf tests
+        /// </summary>
         private void Setup()
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Path.GetDirectoryName(Environment.CurrentDirectory))
+                .AddJsonFile("out/appsettings.json", true)
+                .AddJsonFile($"out/appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json");
+
+            var config = builder.Build();
+
+            _testSettings = new TestSettings();
+            config.GetSection("TestSettings").Bind(_testSettings);
+
             _tlsPlugin.Enabled = true;
             PreAuthenticate = true;
             Proxy = "default";

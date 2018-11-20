@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Eshopworld.DevOps;
 using Eshopworld.Tests.Core;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +20,13 @@ namespace WebAPIService.Tests
 
         public ProbeTests()
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Path.GetDirectoryName(Environment.CurrentDirectory))
+                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", true);
+
+            var config = builder.Build();
             _testSettings = new TestSettings();
-            var config = EswDevOpsSdk.BuildConfiguration(true);
             config.GetSection("TestSettings").Bind(_testSettings);
         }
 
@@ -37,7 +42,7 @@ namespace WebAPIService.Tests
         }
 
         [Fact, IsIntegration]
-        public async Task Get_DefaultBehaviour_ReturnsContentIntegration()
+        public async Task Get_DefaultBehaviour_ReturnsHttp200Integration()
         {
             var client = new HttpClient
             {

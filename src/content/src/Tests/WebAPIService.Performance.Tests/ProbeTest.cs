@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +13,9 @@ namespace WebAPIService.Performance.Tests
     /// <summary>
     /// 
     /// </summary>
+    [DeploymentItem("tests\\WebAPIService\\appsettings.json")]
     [CodedWebTest]
+    [ExcludeFromCodeCoverage]
     public class ProbeTest : CodedWebTestBase
     {
         //todo env may not work depending on where the test is run from ie in vsts, it won't have this env, so it needs to be settings driven
@@ -26,7 +29,7 @@ namespace WebAPIService.Performance.Tests
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Path.GetDirectoryName(Environment.CurrentDirectory))
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", true)
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json");
 
             var config = builder.Build();

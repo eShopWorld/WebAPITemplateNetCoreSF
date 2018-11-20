@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Eshopworld.DevOps;
 using Eshopworld.Tests.Core;
 using FluentAssertions;
@@ -10,6 +11,7 @@ using Xunit;
 
 namespace WebAPIService.Tests
 {
+    [ExcludeFromCodeCoverage]
     public class ProbeTests
     {
         private readonly TestSettings _testSettings;

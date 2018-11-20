@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIService.Controllers
@@ -10,7 +11,7 @@ namespace WebAPIService.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
-    [Microsoft.AspNetCore.Authorization.Authorize]
+    [Authorize]
     public class ValuesController : Controller
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPIService.Controllers
 {
@@ -9,7 +10,7 @@ namespace WebAPIService.Controllers
     [ApiVersionNeutral]
     [Route("[controller]")]
     [Produces("application/json")]
-    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+    [AllowAnonymous]
     public class ProbeController : Controller
     {
         /// <summary>

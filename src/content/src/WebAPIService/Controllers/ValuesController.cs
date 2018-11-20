@@ -21,7 +21,7 @@ namespace WebAPIService.Controllers
         /// <response code="200">List of all values</response>
         /// <response code="401">Caller is Unauthorized</response>
         [HttpGet]
-        [ProducesResponseType(typeof(string[]), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> Get()
         {
@@ -59,11 +59,11 @@ namespace WebAPIService.Controllers
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> Post([FromBody]string value)
         {
-            
+
             if (string.IsNullOrWhiteSpace(value))
                 return await Task.FromResult(BadRequest());
             else
-                return await Task.FromResult(Created());
+                return await Task.FromResult(CreatedAtAction("POST", new { id = value }, value));
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace WebAPIService.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Put(int id, [FromBody]string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -94,13 +94,13 @@ namespace WebAPIService.Controllers
         /// </summary>
         /// <param name="id">id to delete</param>
         /// <returns>action result</returns>
-        /// <response code="204">The delete operation was successful</response>
+        /// <response code="200">The delete operation was successful</response>
         /// <response code="401">Caller is Unauthorized</response>
         /// <response code="404">No entry exists for the given id</response>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete(int id)
         {
             return await Task.FromResult(NoContent());

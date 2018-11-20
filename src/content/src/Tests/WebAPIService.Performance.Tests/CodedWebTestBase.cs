@@ -22,7 +22,6 @@ namespace WebAPIService.Performance.Tests
         {
             Setup();
             _uri = _testSettings.ApiUri;
-
         }
 
         /// <summary>

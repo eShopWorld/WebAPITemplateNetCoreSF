@@ -14,7 +14,7 @@ namespace WebAPIService.Performance.Tests
         private readonly string _uri;
         private TestSettings _testSettings;
         private readonly ForceTls12Plugin _tlsPlugin = new ForceTls12Plugin();
-        
+
         /// <summary>
         /// Takes the path from appsettings.json
         /// </summary>
@@ -41,9 +41,9 @@ namespace WebAPIService.Performance.Tests
         private void Setup()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(Environment.CurrentDirectory))
-                .AddJsonFile("out/appsettings.json", true)
-                .AddJsonFile($"out/appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json");
+                .SetBasePath($"{Path.GetDirectoryName(Environment.CurrentDirectory)}/out")
+                .AddJsonFile("appsettings.json", true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json");
 
             var config = builder.Build();
 

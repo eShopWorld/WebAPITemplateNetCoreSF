@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Eshopworld.DevOps" Version="1.1.5" />
     <PackageReference Include="Eshopworld.Tests.Core" Version="1.0.5" />
+    <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.0.20171219.105559" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +25,27 @@
   <ItemGroup>
     <ProjectReference Include="..\..\WebAPIService.Common\WebAPIService.Common.csproj" />
     <ProjectReference Include="..\..\WebAPIService\WebAPIService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.CI.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Prep.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Prod.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Sand.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

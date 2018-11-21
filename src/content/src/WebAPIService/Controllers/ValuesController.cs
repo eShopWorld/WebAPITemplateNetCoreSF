@@ -40,10 +40,7 @@ namespace WebAPIService.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        public async Task<IActionResult> Get(int id)
-        {
-            return await Task.FromResult(new JsonResult("value"));
-        }
+        public async Task<IActionResult> Get(int id) => await Task.FromResult(new JsonResult("value"));
 
         /// <summary>
         /// post

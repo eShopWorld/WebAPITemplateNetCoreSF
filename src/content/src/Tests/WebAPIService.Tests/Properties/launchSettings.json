@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WebAPIService.Tests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "CI"
+      }
+    }
+  }
+}

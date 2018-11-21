@@ -7,27 +7,29 @@
 	"shortName": "ESWWebAPI",
 	 "symbols": 
 	 {
-		"APIName": 
+		"name": 
 		{
 			"type": "parameter",
 			"datatype": "string",			
 			"replaces": "WebAPIService",
 			"fileRename": "WebAPIService",
-			"isRequired": true
+			"isRequired": true,
+			"description": "The name of the API Service. This becomes the Solution and Projects names after template creation"
 		},
-		"APIPortNumber": 
+		"port": 
 		{
 			"type": "parameter",
 			"datatype": "integer",
 			"isRequired": true,
-			"replaces": "WebAPIServicePort"
+			"replaces": "WebAPIServicePort",
+			"description": "The statically defined port used for the API Service in the Service Fabric"
 		}
 	},
 
 	"sources": [
 		{
 			"source": "./content",
-			"exclude": [ "**/.vs/**", "**/packages/**" ]			
+			"exclude": [ "**/.vs/**", "**/packages/**", "**/TestResults/**" ]			
 		}
 ]
 }

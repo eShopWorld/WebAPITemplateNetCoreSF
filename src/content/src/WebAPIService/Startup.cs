@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebAPIService
@@ -29,6 +30,7 @@ namespace WebAPIService
         private readonly TelemetrySettings _telemetrySettings = new TelemetrySettings();
         private readonly IBigBrother _bb;
         private readonly IConfigurationRoot _configuration;
+        private readonly string _assemblyName = Assembly.GetExecutingAssembly().FullName;
 
         /// <summary>
         /// Constructor
@@ -82,7 +84,12 @@ namespace WebAPIService
                     {
                         c.IncludeXmlComments(path);
                         c.DescribeAllEnumsAsStrings();
-                        c.SwaggerDoc("v1", new Info { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
+                        c.SwaggerDoc("v1",
+                            new Info
+                            {
+                                Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                                Title = _assemblyName
+                            });
                         c.CustomSchemaIds(x => x.FullName);
                         c.AddSecurityDefinition("Bearer",
                             new ApiKeyScheme
@@ -111,6 +118,18 @@ namespace WebAPIService
                         //x.AddJwtBearerEventsTelemetry(bb); 
                     });
 
+                void InsecureCorsPolicy(CorsPolicyBuilder b) => b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                void SecureCorsPolicy(CorsPolicyBuilder b) => b.WithOrigins("http://example.com - CHANGE THIS");
+                services.AddCors(options =>
+                {
+                    options.AddPolicy("Development", InsecureCorsPolicy);
+                    options.AddPolicy("CI", InsecureCorsPolicy);
+                    options.AddPolicy("TEST", InsecureCorsPolicy);
+                    options.AddPolicy("PREP", InsecureCorsPolicy);
+                    options.AddPolicy("SAND", SecureCorsPolicy);
+                    options.AddPolicy("PROD", SecureCorsPolicy);
+                });
+
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
                 builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
@@ -134,17 +153,25 @@ namespace WebAPIService
         /// <param name="env">environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }            
+            
             app.UseBigBrotherExceptionHandler();
             app.UseSwagger(o => o.RouteTemplate = "swagger/{documentName}/swagger.json");
             app.UseSwaggerUI(o =>
             {
-                o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
+                o.SwaggerEndpoint("v1/swagger.json", _assemblyName);
                 o.RoutePrefix = "swagger";
             });
 
             app.UseAuthentication();
 
-            app.UseMvc();
-        }
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            app.UseCors(environment);
+
+            app.UseMvc();            
+        }       
     }
 }

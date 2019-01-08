@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Unit.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Integration.Tests", "Tests\WebAPIService.Integration.Tests\WebAPIService.Integration.Tests.csproj", "{CEC98E68-24E6-49B9-821D-1065E665A37C}"
 EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "WebAPIService.Fabric", "WebAPIService.Fabric\WebAPIService.Fabric.sfproj", "{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,14 @@ Global
 		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Release|x64.ActiveCfg = Release|x64
 		{CEC98E68-24E6-49B9-821D-1065E665A37C}.Release|x64.Build.0 = Release|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Debug|x64.ActiveCfg = Debug|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Debug|x64.Build.0 = Debug|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Debug|x64.Deploy.0 = Debug|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|Any CPU.ActiveCfg = Release|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|x64.ActiveCfg = Release|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|x64.Build.0 = Release|x64
+		{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

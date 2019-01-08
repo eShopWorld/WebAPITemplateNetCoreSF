@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ApplicationPackageRoot\ApplicationManifest.xml" />
-    <None Include="ApplicationParameters\Ci.xml" />
-    <None Include="ApplicationParameters\Prod.xml" />
-    <None Include="ApplicationParameters\Preprod.xml" />
-    <None Include="ApplicationParameters\Test.xml" />
-    <None Include="ApplicationParameters\Sand.xml" />
+    <None Include="ApplicationParameters\CI.xml" />
+    <None Include="ApplicationParameters\PROD.xml" />
+    <None Include="ApplicationParameters\PREPROD.xml" />
+    <None Include="ApplicationParameters\TEST.xml" />
+    <None Include="ApplicationParameters\SAND.xml" />
     <None Include="ApplicationParameters\Development.xml" />
     <None Include="PublishProfiles\Test.xml" />
     <None Include="PublishProfiles\Preprod.xml" />

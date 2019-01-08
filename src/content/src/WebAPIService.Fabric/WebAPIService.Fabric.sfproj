@@ -27,8 +27,8 @@
     <None Include="ApplicationParameters\Sand.xml" />
     <None Include="ApplicationParameters\Development.xml" />
     <None Include="PublishProfiles\Test.xml" />
-    <None Include="PublishProfiles\PreProd.xml" />
-    <None Include="PublishProfiles\Production.xml" />
+    <None Include="PublishProfiles\Preprod.xml" />
+    <None Include="PublishProfiles\Prod.xml" />
     <None Include="PublishProfiles\Sand.xml" />
     <None Include="PublishProfiles\CI.xml" />
     <None Include="PublishProfiles\Development.xml" />

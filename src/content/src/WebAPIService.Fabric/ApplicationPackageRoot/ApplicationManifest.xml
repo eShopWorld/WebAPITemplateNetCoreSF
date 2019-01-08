@@ -2,7 +2,7 @@
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="WebAPIServiceType" ApplicationTypeVersion="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
     <Parameter Name="WebAPIService_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue="Production" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue="Prod" />
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
        should match the Name and Version attributes of the ServiceManifest element defined in the 

@@ -2,10 +2,10 @@
 	"$schema": "http://json.schemastore.org/template",
 	"author": "Oisin Haken, David Guerin",
 	"classifications": [ "Web", "WebAPI" ],
-	"identity": "Eshopworld.WebAPI.Template",
+	"identity": "Eshopworld.WebAPIFabric.Template",
 	"name": "EshopWorld Web API Service Fabric hosted ASP.NET Core 2 template",
 	"shortName": "ESWWebAPI",
-	 "symbols": 
+	"symbols": 
 	 {
 		"APIName": 
 		{
@@ -23,11 +23,15 @@
 			"replaces": "WebAPIServicePort"
 		}
 	},
-
-	"sources": [
-		{
-			"source": "./content",
-			"exclude": [ "**/.vs/**", "**/packages/**" ]			
-		}
-]
+	"sources": 
+	[{
+		"exclude": [
+		"**/[Bb]in/**",
+		"**/[Oo]bj/**",
+		".template.config/**/*",
+		"**/*.filelist",
+		"**/*.user",
+		"**/*.lock.json",
+		"src/.vs/**"
+	]}]
 }

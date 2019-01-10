@@ -21,14 +21,14 @@
   <ItemGroup>
     <None Include="ApplicationPackageRoot\ApplicationManifest.xml" />
     <None Include="ApplicationParameters\CI.xml" />
-    <None Include="ApplicationParameters\Production.xml" />
-    <None Include="ApplicationParameters\PreProd.xml" />
-    <None Include="ApplicationParameters\Test.xml" />
-    <None Include="ApplicationParameters\Sand.xml" />
+    <None Include="ApplicationParameters\PROD.xml" />
+    <None Include="ApplicationParameters\PREPROD.xml" />
+    <None Include="ApplicationParameters\TEST.xml" />
+    <None Include="ApplicationParameters\SAND.xml" />
     <None Include="ApplicationParameters\Development.xml" />
     <None Include="PublishProfiles\Test.xml" />
-    <None Include="PublishProfiles\PreProd.xml" />
-    <None Include="PublishProfiles\Production.xml" />
+    <None Include="PublishProfiles\Preprod.xml" />
+    <None Include="PublishProfiles\Prod.xml" />
     <None Include="PublishProfiles\Sand.xml" />
     <None Include="PublishProfiles\CI.xml" />
     <None Include="PublishProfiles\Development.xml" />

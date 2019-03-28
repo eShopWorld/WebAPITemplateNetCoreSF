@@ -26,9 +26,9 @@ namespace WebAPIService
                     // an instance of the class is created in this host process.
 
                     ServiceRuntime.RegisterServiceAsync("WebAPIServiceType",
-                        context => new WebApiService(context)).GetAwaiter().GetResult();
+                        context => new WebAPIService(context)).GetAwaiter().GetResult();
 
-                    ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebApiService).Name);
+                    ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebAPIService).Name);
 
                     // Prevents this host process from terminating so services keeps running. 
                     Thread.Sleep(Timeout.Infinite);

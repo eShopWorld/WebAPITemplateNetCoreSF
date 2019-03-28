@@ -15,9 +15,9 @@ namespace WebAPIService
     /// <summary>
     /// The FabricRuntime creates an instance of this class for each service type instance. 
     /// </summary>
-    internal sealed class WebApiService : StatelessService
+    internal sealed class WebAPIService : StatelessService
     {
-        public WebApiService(StatelessServiceContext context)
+        public WebAPIService(StatelessServiceContext context)
             : base(context)
         { }
 

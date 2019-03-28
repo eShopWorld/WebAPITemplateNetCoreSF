@@ -22,7 +22,7 @@
     <None Include="ApplicationPackageRoot\ApplicationManifest.xml" />
     <None Include="ApplicationParameters\CI.xml" />
     <None Include="ApplicationParameters\PROD.xml" />
-    <None Include="ApplicationParameters\PREPROD.xml" />
+    <None Include="ApplicationParameters\PREP.xml" />
     <None Include="ApplicationParameters\TEST.xml" />
     <None Include="ApplicationParameters\SAND.xml" />
     <None Include="ApplicationParameters\Development.xml" />

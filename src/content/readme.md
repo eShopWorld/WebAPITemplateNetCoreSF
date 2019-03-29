@@ -13,6 +13,7 @@ Template recognizes two required params
 The other (post generation) attributes are
 
 - swagger version (see Startup.cs in the API project)
+- OpenApi specification version (version 3 not yet supported by Autorest) - see Startup.cs and the UseOpenApiV2 flag - this mode is enabled by default
 - version prefix in swagger endpoint (also in Startup.cs)
 - port in service manifest (see ServiceManifest.xml in API project)
 - AppInsights instrumentation key for the app and the internal one for BigBrother (see appsettings json file corresponding to the target environment (e.g appsettings.Production.json) -see "TBA" values

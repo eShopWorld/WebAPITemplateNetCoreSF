@@ -143,7 +143,11 @@ namespace WebAPIService
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseBigBrotherExceptionHandler();
-            app.UseSwagger(o => o.RouteTemplate = "swagger/{documentName}/swagger.json");
+            app.UseSwagger(o =>
+            {
+                o.RouteTemplate = "swagger/{documentName}/swagger.json";
+                o.SerializeAsV2 = UseOpenApiV2;
+            }); 
             app.UseSwaggerUI(o =>
             {
                 o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");

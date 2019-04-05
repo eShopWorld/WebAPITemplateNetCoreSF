@@ -89,6 +89,8 @@ For a version 2 (v2) controller this looks like the following:
 	}
 ```
 
+To avoid duplicate code in controllers, structure your code so that common artefacts/services are shared. Ensure models are versioned as well so that changes in the new version are not implicitly transferred to the original version contract.
+
 # Building the template locally
 
 1. Update the template as needed.

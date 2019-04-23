@@ -21,6 +21,13 @@
 			"datatype": "integer",
 			"isRequired": true,
 			"replaces": "WebAPIServicePort"
+		},
+		"APIHttpsPortNumber": 
+		{
+			"type": "parameter",
+			"datatype": "integer",
+			"isRequired": true,
+			"replaces": "WebHttpsAPIServicePort"
 		}
 	},
 	"sources": 

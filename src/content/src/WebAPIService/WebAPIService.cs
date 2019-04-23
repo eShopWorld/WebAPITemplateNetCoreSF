@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Fabric;
 using System.IO;
+using Eshopworld.Web;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.ServiceFabric;
 using Microsoft.ApplicationInsights.ServiceFabric.Module;
@@ -46,6 +47,7 @@ namespace WebAPIService
                                     .UseStartup<Startup>()
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)
                                     .UseUrls(url)
+                                    .UseEswSsl(listener)
                                     .Build();
                     }))
             };

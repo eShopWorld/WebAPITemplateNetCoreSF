@@ -20,11 +20,11 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="Eshopworld.DevOps" Version="4.0.0" />
     <PackageReference Include="Eshopworld.Telemetry" Version="2.1.4" />
-    <PackageReference Include="Eshopworld.Web" Version="2.1.6" />
+    <PackageReference Include="Eshopworld.Web" Version="2.1.7" />
     <PackageReference Include="IdentityServer4" Version="2.4.0" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric.Native" Version="2.3.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric.Native" Version="2.3.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />

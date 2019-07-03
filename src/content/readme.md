@@ -8,7 +8,6 @@ This template requires two levels of configuration
 Template recognizes three required params
 
 - APIName - name of the API e.g. Fraud.API
-- APIPortNumber - port number e.g. 15000
 - APIHttpsPortNumber - port number for HTTPS traffic e.g. 15001 (must be different than APIPortNumber)
 
 The other (post generation) attributes are

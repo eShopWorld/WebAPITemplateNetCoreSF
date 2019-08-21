@@ -66,7 +66,9 @@ namespace WebAPIService
 
                     options.Filters.Add(filter);
                 });
+
                 services.AddApiVersioning();
+                services.AddHealthChecks();
 
                 //Get XML documentation
                 var path = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
@@ -155,6 +157,8 @@ namespace WebAPIService
             });
 
             app.UseAuthentication();
+
+            app.UseHealthChecks("/probe");
 
             app.UseMvc();
         }

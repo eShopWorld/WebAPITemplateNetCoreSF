@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Telemetry;
 using Eshopworld.Web;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,7 @@ namespace WebAPIService
                 else
                 {
                     var host = WebHost.CreateDefaultBuilder()
+                        .ConfigureServices(services => services.AddAutofac())
                         .UseStartup<Startup>()
                         .Build();
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Core;
 using Eshopworld.DevOps;
 using Eshopworld.Web;
@@ -46,7 +45,7 @@ namespace WebAPIService
         /// </summary>
         /// <param name="services">service collection</param>
         /// <returns>service provider instance (Autofac provider)</returns>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             try
             {
@@ -118,15 +117,6 @@ namespace WebAPIService
                         //TODO: this requires Eshopworld.Beatles.Security to be refactored
                         //x.AddJwtBearerEventsTelemetry(bb); 
                     });
-
-                var builder = new ContainerBuilder();
-                builder.Populate(services);
-                builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
-
-                // add additional services or modules into container here
-
-                var container = builder.Build();
-                return new AutofacServiceProvider(container);
             }
             catch (Exception e)
             {
@@ -157,6 +147,17 @@ namespace WebAPIService
             app.UseAuthentication();
 
             app.UseMvc();
+        }
+
+        /// <summary>
+        /// Register services directly with Autofac. This runs after ConfigureServices
+        /// so the services here will override registrations made in ConfigureServices (useful for testing).
+        /// Don't build the container; that gets done for you.
+        /// </summary>
+        /// <param name="builder">Container Builder</param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
         }
     }
 }

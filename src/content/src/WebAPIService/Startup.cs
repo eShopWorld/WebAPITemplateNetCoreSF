@@ -34,7 +34,7 @@ namespace WebAPIService
         /// Constructor
         /// </summary>
         /// <param name="env">hosting environment</param>
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             _configuration = EswDevOpsSdk.BuildConfiguration(env.ContentRootPath, env.EnvironmentName);
             _configuration.GetSection("Telemetry").Bind(_telemetrySettings);
@@ -58,6 +58,7 @@ namespace WebAPIService
 
                 services.AddMvc(options =>
                 {
+                    options.EnableEndpointRouting = false;
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
 
                     var filter = EnvironmentHelper.IsInFabric ? 
@@ -142,7 +143,7 @@ namespace WebAPIService
         /// </summary>
         /// <param name="app">application builder</param>
         /// <param name="env">environment</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseBigBrotherExceptionHandler();
             app.UseSwagger(o =>

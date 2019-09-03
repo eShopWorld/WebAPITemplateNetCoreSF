@@ -4,8 +4,8 @@ using System.Threading;
 using Eshopworld.Telemetry;
 using Eshopworld.Web;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore;
 using Microsoft.ServiceFabric.Services.Runtime;
+using Microsoft.Extensions.Hosting;
 
 namespace WebAPIService
 {
@@ -35,8 +35,9 @@ namespace WebAPIService
                 }
                 else
                 {
-                    var host = WebHost.CreateDefaultBuilder()
-                        .UseStartup<Startup>()
+                    var host = Host
+                        .CreateDefaultBuilder()
+                            .ConfigureWebHostDefaults(w=>w.UseStartup<Startup>())
                         .Build();
 
                     host.Run();

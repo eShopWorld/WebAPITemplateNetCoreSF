@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <!-- Adding in update for a sub dep until Ms fix the dep tree-->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview8.19405.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.0.0-preview8.19405.7" />
     <PackageReference Include="Microsoft.ServiceFabric.Diagnostics.Internal" Version="3.4.664" />
     <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="3.4.664" />
@@ -18,7 +19,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="Eshopworld.DevOps" Version="4.2.0" />
     <PackageReference Include="Eshopworld.Telemetry" Version="2.1.5" />
-    <PackageReference Include="Eshopworld.Web" Version="2.2.1" />
+    <PackageReference Include="Eshopworld.Web" Version="3.0.0-preview1" />
     <PackageReference Include="IdentityServer4" Version="2.5.3" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />

@@ -66,7 +66,8 @@ namespace WebAPIService
                         new AllowAnonymousFilter();
 
                     options.Filters.Add(filter);
-                });
+                })
+                    .AddNewtonsoftJson();
 
                 services.AddApiVersioning();
                 services.AddHealthChecks();

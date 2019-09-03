@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Eshopworld.WebAPIFabric.Template</id>
-    <version>1.1.0</version>
+    <version>2.0.0-preview</version>
     <description>
      Template for c# Web API Projects hosted on Microsoft Service Fabric.
     </description>

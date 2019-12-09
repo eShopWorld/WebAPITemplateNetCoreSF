@@ -1,22 +1,25 @@
-﻿using System;
-using System.IO;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Core;
 using Eshopworld.DevOps;
-using Eshopworld.Web;
 using Eshopworld.Telemetry;
+using Eshopworld.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.IO;
+using System.Reflection;
+using WebAPIService.Swagger;
 
 namespace WebAPIService
 {
@@ -34,7 +37,7 @@ namespace WebAPIService
         /// Constructor
         /// </summary>
         /// <param name="env">hosting environment</param>
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             _configuration = EswDevOpsSdk.BuildConfiguration(env.ContentRootPath, env.EnvironmentName);
             _configuration.GetSection("Telemetry").Bind(_telemetrySettings);
@@ -60,8 +63,8 @@ namespace WebAPIService
                 {
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
 
-                    var filter = EnvironmentHelper.IsInFabric ? 
-                        (IFilterMetadata) new AuthorizeFilter(policy): 
+                    var filter = EnvironmentHelper.IsInFabric ?
+                        (IFilterMetadata) new AuthorizeFilter(policy):
                         new AllowAnonymousFilter();
 
                     options.Filters.Add(filter);
@@ -80,11 +83,10 @@ namespace WebAPIService
                 }
                 else
                 {
+                    services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
                     services.AddSwaggerGen(c =>
                     {
                         c.IncludeXmlComments(path);
-                        c.DescribeAllEnumsAsStrings();
-                        c.SwaggerDoc("v1", new OpenApiInfo { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
                         c.CustomSchemaIds(x => x.FullName);
                         c.AddSecurityDefinition("Bearer",
                             new OpenApiSecurityScheme
@@ -110,16 +112,18 @@ namespace WebAPIService
                     });
                 }
 
+                services.AddVersionedApiExplorer();
+
                 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(
-                    x =>
-                    {
-                        x.ApiName = serviceConfigurationOptions.Value.ApiName;
-                        x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
-                        x.Authority = serviceConfigurationOptions.Value.Authority;
-                        x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
-                        //TODO: this requires Eshopworld.Beatles.Security to be refactored
-                        //x.AddJwtBearerEventsTelemetry(bb); 
-                    });
+                   x =>
+                   {
+                       x.ApiName = serviceConfigurationOptions.Value.ApiName;
+                       x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
+                       x.Authority = serviceConfigurationOptions.Value.Authority;
+                       x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
+                       //TODO: this requires Eshopworld.Beatles.Security to be refactored
+                       //x.AddJwtBearerEventsTelemetry(bb); 
+                   });
 
                 var builder = new ContainerBuilder();
                 builder.Populate(services);
@@ -141,19 +145,23 @@ namespace WebAPIService
         /// configure asp.net pipeline
         /// </summary>
         /// <param name="app">application builder</param>
-        /// <param name="env">environment</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        /// <param name="provider">The API version descriptor provider used to enumerate defined API versions.</param>
+        public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             app.UseBigBrotherExceptionHandler();
             app.UseSwagger(o =>
             {
                 o.RouteTemplate = "swagger/{documentName}/swagger.json";
                 o.SerializeAsV2 = UseOpenApiV2;
-            }); 
+            });
             app.UseSwaggerUI(o =>
             {
-                o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
-                o.RoutePrefix = "swagger";
+                // build a swagger endpoint for each discovered API version
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    o.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                    o.RoutePrefix = "swagger";
+                }
             });
 
             app.UseAuthentication();

@@ -56,7 +56,7 @@ namespace WebAPIService
                 var serviceConfigurationOptions = services.BuildServiceProvider()
                     .GetService<IOptions<ServiceConfigurationOptions>>();
 
-                services.AddMvc(options =>
+                services.AddControllers(options =>
                 {
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
 
@@ -160,7 +160,8 @@ namespace WebAPIService
 
             app.UseHealthChecks("/probe");
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(builder => builder.MapControllers());
         }
     }
 }

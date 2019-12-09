@@ -56,10 +56,11 @@ In code for a version 1 (v1) controller this looks like the following:
 
 ```c# 
     [Produces("application/json")]
+	[ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
-    public class ValuesController : Controller
+    public class ValuesController : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(typeof(string[]), (int) HttpStatusCode.OK)]
@@ -75,10 +76,11 @@ For a version 2 (v2) controller this looks like the following:
 
 ```c#
     [Produces("application/json")]
+	[ApiController]
     [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
-    public class ValuesController : Controller
+    public class ValuesController : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(typeof(string[]), (int) HttpStatusCode.OK)]

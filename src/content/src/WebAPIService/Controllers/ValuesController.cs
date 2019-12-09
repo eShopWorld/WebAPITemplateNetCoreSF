@@ -8,11 +8,12 @@ namespace WebAPIService.Controllers
     /// <summary>
     /// sample controller
     /// </summary>
+    [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
     [Authorize]
-    public class ValuesController : Controller
+    public class ValuesController : ControllerBase
     {
         /// <summary>
         /// GET implementation for default route

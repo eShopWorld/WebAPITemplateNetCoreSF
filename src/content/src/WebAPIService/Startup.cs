@@ -42,11 +42,22 @@ namespace WebAPIService
         }
 
         /// <summary>
+        /// ConfigureServices is where you register dependencies. This gets
+        /// called by the runtime before the ConfigureContainer method, below.
+        /// </summary>
+        /// <remarks>See https://docs.autofac.org/en/latest/integration/aspnetcore.html#asp-net-core-3-0-and-generic-hosting</remarks>
+        /// <param name="builder">The <see cref="ContainerBuilder"/> to configure</param>
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
+        }
+
+        /// <summary>
         /// configure services to be used by the asp.net runtime
         /// </summary>
         /// <param name="services">service collection</param>
         /// <returns>service provider instance (Autofac provider)</returns>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             try
             {
@@ -119,18 +130,10 @@ namespace WebAPIService
                         x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
                         x.Authority = serviceConfigurationOptions.Value.Authority;
                         x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
-                        //TODO: this requires Eshopworld.Beatles.Security to be refactored
+                        // To include telemetry Install-Package EShopworld.Security.Services.Telemetry -Source https://eshopworld.myget.org/F/github-dev/api/v3/index.json
+                        // See https://eshopworld.visualstudio.com/evo-core/_git/security-services-telemetry?path=%2FREADME.md&_a=preview
                         //x.AddJwtBearerEventsTelemetry(bb); 
                     });
-
-                var builder = new ContainerBuilder();
-                builder.Populate(services);
-                builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
-
-                // add additional services or modules into container here
-
-                var container = builder.Build();
-                return new AutofacServiceProvider(container);
             }
             catch (Exception e)
             {

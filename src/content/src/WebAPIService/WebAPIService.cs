@@ -39,6 +39,7 @@ namespace WebAPIService
                                     .UseKestrel()
                                     .ConfigureServices(
                                         services => services
+                                            .AddAutofac()
                                             .AddSingleton(serviceContext)
                                             .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext))
                                             .AddSingleton<ITelemetryModule>(new ServiceRemotingDependencyTrackingTelemetryModule())

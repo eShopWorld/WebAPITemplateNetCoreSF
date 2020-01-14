@@ -14,11 +14,10 @@ Template recognizes three required params
 The other (post generation) attributes are
 
 - swagger version (see Startup.cs in the API project)
-- OpenApi specification version (version 3 not yet supported by Autorest) - see Startup.cs and the UseOpenApiV2 flag - this mode is enabled by default
 - version prefix in swagger endpoint (also in Startup.cs)
 - port in service manifest (see ServiceManifest.xml in API project)
 - AppInsights instrumentation key for the app and the internal one for BigBrother (see appsettings json file corresponding to the target environment (e.g appsettings.Production.json) -see "TBA" values
-- STS configuration - see appsettings json corresponding to the environment - see ServiceConfigurationOptions node and values of "TBA"
+ - STS configuration - see appsettings json corresponding to the environment - see ServiceConfigurationOptions node and values of "TBA"
 
 # Installation guide
 
@@ -91,6 +90,8 @@ For a version 2 (v2) controller this looks like the following:
 	}
 ```
 
+To avoid duplicate code in controllers, structure your code so that common artifacts/services are shared. Ensure models are versioned as well so that changes in the new version are not implicitly transferred to the original version contract.
+
 # Building the template locally
 
 1. Update the template as needed.
@@ -119,3 +120,7 @@ dotnet new -u [path to the dir of the .template.config file]
 1. It's ability to parse/process complex values.
 1. Their business value (they are likely not known at the initial stages of the project)
 1. Their overall number (and the absence of defaults).
+
+# Migration Guide
+
+See [Migration](migration.md)

@@ -120,3 +120,7 @@ dotnet new -u [path to the dir of the .template.config file]
 1. It's ability to parse/process complex values.
 1. Their business value (they are likely not known at the initial stages of the project)
 1. Their overall number (and the absence of defaults).
+
+# Migration Guide
+
+See [Migration](migration.md)

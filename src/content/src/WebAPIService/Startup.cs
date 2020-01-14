@@ -56,7 +56,6 @@ namespace WebAPIService
         /// configure services to be used by the asp.net runtime
         /// </summary>
         /// <param name="services">service collection</param>
-        /// <returns>service provider instance (Autofac provider)</returns>
         public void ConfigureServices(IServiceCollection services)
         {
             try

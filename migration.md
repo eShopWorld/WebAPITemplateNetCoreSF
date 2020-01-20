@@ -198,4 +198,8 @@ In the CreateServiceInstanceListeners method add the Autofac service to the Host
     }))
 ```
 
-**NOTE:** There is an AutoFac extension for adding AutoFac support to Service Fabric see [here](https://docs.autofac.org/en/latest/integration/servicefabric.html) for details. This extension is not compatible with the templates instantiation of its host. A future version of the KestrelCommunicationListener maybe compatible with the AspNetCore 3.0+ hosing.
+**NOTE:** There is an AutoFac extension for adding AutoFac support to Service Fabric see [here](https://docs.autofac.org/en/latest/integration/servicefabric.html) for details. This extension is incompatible with the templates instantiation of the service fabric host.
+
+The service fabric host instantiation creates an instance of a KestrelCommunicationListener which expects an **IWebHostBuilder**, which is supported for backward compatibility see [here](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host?view=aspnetcore-3.1) for more details.
+
+The host builder created in **Program.cs** is an IHostBuilder derived HostBuilder, this is the recommended host for ASP.Net Core 3.0 and up, see [here](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.1) for more details.

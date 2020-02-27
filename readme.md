@@ -117,7 +117,7 @@ dotnet new -u [path to the dir of the .template.config file]
 <sup>1</sup> There are several reasons for setting parameters after the fact:
 
 1. Limitations of current .net CLI
-1. It's ability to parse/process complex values.
+1. Its ability to parse/process complex values.
 1. Their business value (they are likely not known at the initial stages of the project)
 1. Their overall number (and the absence of defaults).
 

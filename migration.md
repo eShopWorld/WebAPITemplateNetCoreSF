@@ -12,9 +12,9 @@ The following migration guide covers the migration from a previous version of th
 
 What is not covered are any additional frameworks or customisations that have been applied to an instance of a Web Api that was generated from a previous version of this template.
 
-The current version of the template is base on .Net Core 3.1 AspNetCore 3.1, the previous release was based on .Net Core 2.2 AspNetCore 2.2
+The current version of the template is based on .Net Core 3.1 AspNetCore 3.1, the previous release was based on .Net Core 2.2 AspNetCore 2.2
 
-There are a number of modifications required in the migration from .net core 2.2 AspNetCore 2.2 to Core 3.1 AspNetCore 3.1.
+There are a number of modifications required in the migration from .Net Core 2.2 AspNetCore 2.2 to .Net Core 3.1 AspNetCore 3.1.
 
  From | To Version | Migration
 ---------|----------|---------
@@ -160,7 +160,7 @@ Update the service fabric host package reference to the latest version of Micros
 <package id="Microsoft.VisualStudio.Azure.Fabric.MSBuild" version="1.6.9" targetFramework="net461" />
 ```
 
-Note that updating the version of the package does not always up date the referenced paths in the service fabric project file.
+Note that updating the version of the package does not always update the referenced paths in the service fabric project file.
 
 ``` xml
 <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.9\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" />

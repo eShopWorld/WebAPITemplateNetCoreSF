@@ -66,7 +66,7 @@ namespace WebAPIService
                 var serviceConfigurationOptions = services.BuildServiceProvider()
                     .GetService<IOptions<ServiceConfigurationOptions>>();
 
-                services.AddMvc(options =>
+                services.AddControllers(options =>
                 {
                     options.EnableEndpointRouting = false;
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());

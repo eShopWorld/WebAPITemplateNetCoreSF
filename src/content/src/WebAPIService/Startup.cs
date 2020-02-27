@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.IO;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Core;
 using Eshopworld.DevOps;
 using Eshopworld.Web;
@@ -68,7 +67,6 @@ namespace WebAPIService
 
                 services.AddControllers(options =>
                 {
-                    options.EnableEndpointRouting = false;
                     var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
 
                     var filter = EnvironmentHelper.IsInFabric ? 
@@ -76,9 +74,8 @@ namespace WebAPIService
                         new AllowAnonymousFilter();
 
                     options.Filters.Add(filter);
-                })
-                    .AddNewtonsoftJson();
-
+                }).AddNewtonsoftJson();
+                
                 services.AddApiVersioning();
                 services.AddHealthChecks();
 
@@ -96,7 +93,7 @@ namespace WebAPIService
                     {
                         c.IncludeXmlComments(path);
                         c.DescribeAllEnumsAsStrings();
-                        c.SwaggerDoc("v1", new OpenApiInfo { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
+                        c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "WebAPIService" });
                         c.CustomSchemaIds(x => x.FullName);
                         c.AddSecurityDefinition("Bearer",
                             new OpenApiSecurityScheme
@@ -153,18 +150,23 @@ namespace WebAPIService
             {
                 o.RouteTemplate = "swagger/{documentName}/swagger.json";
                 o.SerializeAsV2 = UseOpenApiV2;
-            }); 
+            });
             app.UseSwaggerUI(o =>
             {
                 o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
                 o.RoutePrefix = "swagger";
             });
 
+            app.UseRouting();
+
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseHealthChecks("/probe");
 
-            app.UseMvc();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
         }
     }
 }

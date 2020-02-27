@@ -39,7 +39,7 @@ namespace WebAPIService
                     var host = Host
                         .CreateDefaultBuilder()
                         .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                        .ConfigureWebHostDefaults(w=>w.UseStartup<Startup>())
+                        .ConfigureWebHostDefaults(w => w.UseStartup<Startup>())
                         .Build();
 
                     host.Run();

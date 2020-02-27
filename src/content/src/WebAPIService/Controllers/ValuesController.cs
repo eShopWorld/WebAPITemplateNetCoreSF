@@ -8,7 +8,7 @@ namespace WebAPIService.Controllers
     /// <summary>
     /// sample controller
     /// </summary>
-    [ApiVersion("1.0")]
+    [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
     [Authorize]

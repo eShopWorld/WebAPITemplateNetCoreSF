@@ -62,27 +62,28 @@ namespace WebAPIService
                 services.AddApplicationInsightsTelemetry(_telemetrySettings.InstrumentationKey);
                 services.Configure<ServiceConfigurationOptions>(_configuration.GetSection("ServiceConfigurationOptions"));
 
-                var serviceConfigurationOptions = services.BuildServiceProvider()
-                    .GetService<IOptions<ServiceConfigurationOptions>>();
+                var serviceConfiguration = new ServiceConfigurationOptions();
+                _configuration.GetSection("ServiceConfigurationOptions").Bind(serviceConfiguration);
 
                 services.AddControllers(options =>
                 {
-                    var policy = ScopePolicy.Create(serviceConfigurationOptions.Value.RequiredScopes.ToArray());
+                    var policy = ScopePolicy.Create(serviceConfiguration.RequiredScopes.ToArray());
 
                     var filter = EnvironmentHelper.IsInFabric ? 
                         (IFilterMetadata) new AuthorizeFilter(policy): 
                         new AllowAnonymousFilter();
 
                     options.Filters.Add(filter);
+
                 }).AddNewtonsoftJson();
                 
                 services.AddApiVersioning();
                 services.AddHealthChecks();
 
-                //Get XML documentation
+                // Get XML documentation
                 var path = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
 
-                //if not generated throw an event but it's not going to stop the app from starting
+                // If not generated throw an event but it's not going to stop the app from starting
                 if (!File.Exists(path))
                 {
                     BigBrother.Write(new Exception("Swagger XML document has not been included in the project"));
@@ -92,19 +93,17 @@ namespace WebAPIService
                     services.AddSwaggerGen(c =>
                     {
                         c.IncludeXmlComments(path);
-                        c.DescribeAllEnumsAsStrings();
                         c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "WebAPIService" });
                         c.CustomSchemaIds(x => x.FullName);
-                        c.AddSecurityDefinition("Bearer",
-                            new OpenApiSecurityScheme
-                            {
-                                In = ParameterLocation.Header,
-                                Description = "Please insert JWT with Bearer into field",
-                                Name = "Authorization",
-                                Type = UseOpenApiV2 ? SecuritySchemeType.ApiKey : SecuritySchemeType.Http,
-                                Scheme = "bearer",
-                                BearerFormat = "JWT",
-                            });
+                        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                        {
+                            In = ParameterLocation.Header,
+                            Description = "Please insert JWT with Bearer into field",
+                            Name = "Authorization",
+                            Type = UseOpenApiV2 ? SecuritySchemeType.ApiKey : SecuritySchemeType.Http,
+                            Scheme = "bearer",
+                            BearerFormat = "JWT",
+                        });
 
                         c.AddSecurityRequirement(new OpenApiSecurityRequirement
                         {
@@ -119,17 +118,16 @@ namespace WebAPIService
                     });
                 }
 
-                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(
-                    x =>
-                    {
-                        x.ApiName = serviceConfigurationOptions.Value.ApiName;
-                        x.ApiSecret = serviceConfigurationOptions.Value.ApiSecret;
-                        x.Authority = serviceConfigurationOptions.Value.Authority;
-                        x.RequireHttpsMetadata = serviceConfigurationOptions.Value.IsHttps;
-                        // To include telemetry Install-Package EShopworld.Security.Services.Telemetry -Source https://eshopworld.myget.org/F/github-dev/api/v3/index.json
-                        // See https://eshopworld.visualstudio.com/evo-core/_git/security-services-telemetry?path=%2FREADME.md&_a=preview
-                        //x.AddJwtBearerEventsTelemetry(bb); 
-                    });
+                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddIdentityServerAuthentication(x =>
+                {
+                    x.ApiName = serviceConfiguration.ApiName;
+                    x.ApiSecret = serviceConfiguration.ApiSecret;
+                    x.Authority = serviceConfiguration.Authority;
+                    x.RequireHttpsMetadata = serviceConfiguration.IsHttps;
+                    // To include telemetry Install-Package EShopworld.Security.Services.Telemetry -Source https://eshopworld.myget.org/F/github-dev/api/v3/index.json
+                    // See https://eshopworld.visualstudio.com/evo-core/_git/security-services-telemetry?path=%2FREADME.md&_a=preview
+                    // x.AddJwtBearerEventsTelemetry(bb); 
+                });
             }
             catch (Exception e)
             {

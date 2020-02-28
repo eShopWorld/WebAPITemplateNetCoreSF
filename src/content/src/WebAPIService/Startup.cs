@@ -93,7 +93,7 @@ namespace WebAPIService
                     services.AddSwaggerGen(c =>
                     {
                         c.IncludeXmlComments(path);
-                        c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "WebAPIService" });
+                        c.SwaggerDoc("v1", new OpenApiInfo { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
                         c.CustomSchemaIds(x => x.FullName);
                         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                         {
@@ -156,11 +156,10 @@ namespace WebAPIService
             });
 
             app.UseRouting();
+            app.UseHealthChecks("/probe");
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseHealthChecks("/probe");
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();

@@ -60,7 +60,6 @@ namespace WebAPIService
             try
             {
                 services.AddApplicationInsightsTelemetry(_telemetrySettings.InstrumentationKey);
-                services.Configure<ServiceConfigurationOptions>(_configuration.GetSection("ServiceConfigurationOptions"));
 
                 var serviceConfiguration = new ServiceConfigurationOptions();
                 _configuration.GetSection("ServiceConfigurationOptions").Bind(serviceConfiguration);

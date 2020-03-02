@@ -38,12 +38,12 @@ after the template is installed, run the following:
 ``` shell
 mkdir {put solution name here}
 cd {put solution name here}
-dotnet new ESWWebAPI --APIName {put API name here} --APIPortNumber {put port here}
+dotnet new ESWWebAPI --APIName {put API name here} --APIPortNumber {put port here} --APIHttpsPortNumber {https port}
 ```
 
 # Controller and API Versioning
 
-ASPNet Core provides API versionings conventions in multiple ways. For design and operational reasons versoning is part of the URI contract, eg: http://localhost/api/v1/values
+ASPNet Core provides API versioning conventions in multiple ways. For design and operational reasons versioning is part of the URI contract, eg: http://localhost/api/v1/values
 
 In this case when creating multiple versions, this should follow the following convention:
 
@@ -90,7 +90,7 @@ For a version 2 (v2) controller this looks like the following:
 	}
 ```
 
-To avoid duplicate code in controllers, structure your code so that common artefacts/services are shared. Ensure models are versioned as well so that changes in the new version are not implicitly transferred to the original version contract.
+To avoid duplicate code in controllers, structure your code so that common artifacts/services are shared. Ensure models are versioned as well so that changes in the new version are not implicitly transferred to the original version contract.
 
 # Building the template locally
 
@@ -98,7 +98,6 @@ To avoid duplicate code in controllers, structure your code so that common artef
 1. Update the nuspec file.
 1. Build the nuget package (you need nuget.exe for this)
 1. Then install it locally with the below cli and path:
-
 
 Install the template locally
 ```shell
@@ -115,8 +114,13 @@ dotnet new -u [path to the dir of the .template.config file]
 
 ```
 
+<sup>1</sup> There are several reasons for setting parameters after the fact:
 
-<sup>1</sup> There are several reasons for setting parameters after the fact: 
 1. Limitations of current .net CLI
-1. It's ability to parse/process complex values.
-1. Their business value (they are likely not known at the initial stages of the project)1. Their overall number (and the absence of defaults).
+1. Its ability to parse/process complex values.
+1. Their business value (they are likely not known at the initial stages of the project)
+1. Their overall number (and the absence of defaults).
+
+# Migration Guide
+
+See [Migration](migration.md)

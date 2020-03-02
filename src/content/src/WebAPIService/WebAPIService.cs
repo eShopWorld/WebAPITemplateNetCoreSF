@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Fabric;
 using System.IO;
+using Autofac.Extensions.DependencyInjection;
 using Eshopworld.Web;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights.ServiceFabric;
@@ -39,6 +40,7 @@ namespace WebAPIService
                                     .UseKestrel()
                                     .ConfigureServices(
                                         services => services
+                                            .AddAutofac()
                                             .AddSingleton(serviceContext)
                                             .AddSingleton<ITelemetryInitializer>((serviceProvider) => FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(serviceContext))
                                             .AddSingleton<ITelemetryModule>(new ServiceRemotingDependencyTrackingTelemetryModule())

@@ -20,7 +20,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Eshopworld.DevOps" Version="5.0.1-preview1" />
     <PackageReference Include="Eshopworld.Telemetry" Version="3.1.1" />
-    <PackageReference Include="Eshopworld.Web" Version="4.0.0" />
+    <PackageReference Include="Eshopworld.Web" Version="4.0.1-preview1" />
     <PackageReference Include="IdentityServer4" Version="3.1.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.13.1" />

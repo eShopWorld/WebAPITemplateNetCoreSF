@@ -12,10 +12,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using System.Reflection;
+using Eshopworld.Telemetry.Configuration;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.OpenApi.Models;
+using TelemetrySettings = Eshopworld.Telemetry.Configuration.TelemetrySettings;
 
 namespace WebAPIService
 {
@@ -37,7 +38,7 @@ namespace WebAPIService
         {
             _configuration = EswDevOpsSdk.BuildConfiguration(env.ContentRootPath, env.EnvironmentName);
             _configuration.GetSection("Telemetry").Bind(_telemetrySettings);
-            _bb = new BigBrother(_telemetrySettings.InstrumentationKey, _telemetrySettings.InternalKey);
+            _bb = BigBrother.CreateDefault(_telemetrySettings.InstrumentationKey, _telemetrySettings.InternalKey);
         }
 
         /// <summary>
@@ -48,7 +49,8 @@ namespace WebAPIService
         /// <param name="builder">The <see cref="ContainerBuilder"/> to configure</param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterInstance(_bb).As<IBigBrother>().SingleInstance();
+            builder.RegisterInstance(_telemetrySettings).SingleInstance();
+            builder.RegisterModule<TelemetryModule>();
         }
 
         /// <summary>

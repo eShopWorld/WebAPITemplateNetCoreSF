@@ -13,13 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9E6E7CFD-C545-4A74-964B-30CD284A0BBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService", "WebAPIService\WebAPIService.csproj", "{975D5486-0D52-41CD-B493-6A591968A704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APINamespace.WebAPIService", "APINamespace.WebAPIService\APINamespace.WebAPIService.csproj", "{975D5486-0D52-41CD-B493-6A591968A704}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Unit.Tests", "Tests\WebAPIService.Unit.Tests\WebAPIService.Unit.Tests.csproj", "{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APINamespace.WebAPIService.Unit.Tests", "Tests\APINamespace.WebAPIService.Unit.Tests\APINamespace.WebAPIService.Unit.Tests.csproj", "{95A93E6A-0BE5-46A4-BF2A-A9930257CF8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPIService.Integration.Tests", "Tests\WebAPIService.Integration.Tests\WebAPIService.Integration.Tests.csproj", "{CEC98E68-24E6-49B9-821D-1065E665A37C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APINamespace.WebAPIService.Integration.Tests", "Tests\APINamespace.WebAPIService.Integration.Tests\APINamespace.WebAPIService.Integration.Tests.csproj", "{CEC98E68-24E6-49B9-821D-1065E665A37C}"
 EndProject
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "WebAPIService.Fabric", "WebAPIService.Fabric\WebAPIService.Fabric.sfproj", "{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}"
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "APINamespace.WebAPIService.Fabric", "APINamespace.WebAPIService.Fabric\APINamespace.WebAPIService.Fabric.sfproj", "{BEE428AC-FFDD-4AF6-8A01-B72D8EED875B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

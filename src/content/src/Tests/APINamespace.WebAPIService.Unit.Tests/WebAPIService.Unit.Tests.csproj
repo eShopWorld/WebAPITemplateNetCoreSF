@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\WebAPIService\WebAPIService.csproj" />
+    <ProjectReference Include="..\..\APINamespace.WebAPIService\APINamespace.WebAPIService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

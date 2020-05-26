@@ -7,12 +7,10 @@ This template requires two levels of configuration
 
 Template recognizes the following parameters.
 
-| Name | Description | Required | Default value |
-|------|-------------|----------|---------------|
-| APIName | name of the API, e.g.: FraudAPI | YES ||
-| APIPortNumber | port number, e.g.: 15000 | YES ||
+| Name | Description | Required |
+|------|-------------|----------|
+| APIPortNumber | port number, e.g.: 15000 | YES |
 | APIHttpsPortNumber | port number for HTTPS traffic, e.g.: 15001 (must be different from APIPortNumber) | YES |
-| APINamespace | namespace of the API, e.g.: Eshopworld.Payments | NO | Eshopworld |
 
 
 The other (post generation) attributes are
@@ -42,7 +40,7 @@ after the template is installed, run the following:
 ``` shell
 mkdir {put solution name here}
 cd {put solution name here}
-dotnet new ESWWebAPI --APINamespace {put API namespace here} --APIName {put API name here} --APIPortNumber {put port here} --APIHttpsPortNumber {https port}
+dotnet new ESWWebAPI -n {put API name here} --APIPortNumber {put port here} --APIHttpsPortNumber {https port}
 ```
 
 # Controller and API Versioning

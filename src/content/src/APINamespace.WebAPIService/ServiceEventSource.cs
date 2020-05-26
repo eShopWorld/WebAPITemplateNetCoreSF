@@ -3,9 +3,9 @@ using System.Diagnostics.Tracing;
 using System.Fabric;
 using System.Threading.Tasks;
 
-namespace APINamespace
+namespace APINamespace.WebAPIService
 {
-    [EventSource(Name = "ESW-WebAPIService")]
+    [EventSource(Name = "ESW-APINamespace.WebAPIService")]
     internal sealed class ServiceEventSource : EventSource
     {
         public static readonly ServiceEventSource Current = new ServiceEventSource();

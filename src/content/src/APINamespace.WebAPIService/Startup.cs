@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.OpenApi.Models;
 using TelemetrySettings = Eshopworld.Telemetry.Configuration.TelemetrySettings;
 
-namespace APINamespace
+namespace APINamespace.WebAPIService
 {
     /// <summary>
     /// Startup class for ASP.NET runtime
@@ -94,7 +94,7 @@ namespace APINamespace
                     services.AddSwaggerGen(c =>
                     {
                         c.IncludeXmlComments(path);
-                        c.SwaggerDoc("v1", new OpenApiInfo { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "WebAPIService" });
+                        c.SwaggerDoc("v1", new OpenApiInfo { Version = Assembly.GetExecutingAssembly().GetName().Version.ToString(), Title = "APINamespace.WebAPIService" });
                         c.CustomSchemaIds(x => x.FullName);
                         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                         {
@@ -152,7 +152,7 @@ namespace APINamespace
             });
             app.UseSwaggerUI(o =>
             {
-                o.SwaggerEndpoint("v1/swagger.json", "WebAPIService");
+                o.SwaggerEndpoint("v1/swagger.json", "APINamespace.WebAPIService");
                 o.RoutePrefix = "swagger";
             });
 

@@ -5,24 +5,9 @@
 	"identity": "Eshopworld.WebAPIFabric.Template",
 	"name": "EshopWorld Web API Service Fabric hosted ASP.NET Core 3.1 template",
 	"shortName": "ESWWebAPI",
+	"sourceName": "APINamespace.WebAPIService",
 	"symbols": 
 	 {
-		"APINamespace":
-		{
-			"type": "parameter",
-			"datatype": "string",			
-			"replaces": "APINamespace",
-			"fileRename": "APINamespace",
-			"defaultValue": "Eshopworld"
-		},
-		"APIName": 
-		{
-			"type": "parameter",
-			"datatype": "string",			
-			"replaces": "WebAPIService",
-			"fileRename": "WebAPIService",
-			"isRequired": true
-		},
 		"APIPortNumber": 
 		{
 			"type": "parameter",

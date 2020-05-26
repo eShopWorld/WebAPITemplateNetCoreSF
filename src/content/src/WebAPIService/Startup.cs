@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.OpenApi.Models;
 using TelemetrySettings = Eshopworld.Telemetry.Configuration.TelemetrySettings;
 
-namespace WebAPIService
+namespace APINamespace
 {
     /// <summary>
     /// Startup class for ASP.NET runtime

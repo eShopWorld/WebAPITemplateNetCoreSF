@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace WebAPIService
+namespace APINamespace
 {
     internal static class Program
     {

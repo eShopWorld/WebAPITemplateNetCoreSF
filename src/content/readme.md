@@ -5,11 +5,12 @@ This template requires two levels of configuration
 - parameters for template execution.
 - parameters to set after the content has been generated<sup>1</sup>.
 
-Template recognizes three required params
+Template recognizes four required params
 
-- APIName - name of the API e.g. Fraud.API
-- APIPortNumber - port number e.g. 15000
-- APIHttpsPortNumber - port number for HTTPS traffic e.g. 15001 (must be different than APIPortNumber)
+- APINamespace - namespace of the API, e.g.: Eshopworld.Payments
+- APIName - name of the API, e.g.: FraudAPI
+- APIPortNumber - port number e.g.: 15000
+- APIHttpsPortNumber - port number for HTTPS traffic e.g.: 15001 (must be different from APIPortNumber)
 
 The other (post generation) attributes are
 
@@ -94,15 +95,15 @@ To avoid duplicate code in controllers, structure your code so that common artif
 
 # Building the template locally
 
-1. Update the template as needed.
-1. Update the nuspec file.
+1. Update the template as needed
+1. Update the nuspec file
 1. Build the nuget package (you need nuget.exe for this)
 1. Then install it locally with the below cli and path:
 
 Install the template locally
 ```shell
 
-dotnet new -i [path to the dir of the .template.config file]
+dotnet new -i [path to the .nupkg file]
 
 ```
 
@@ -110,16 +111,16 @@ Uninstall the template locally
 
 ```shell
 
-dotnet new -u [path to the dir of the .template.config file]
+dotnet new -u [package identifier]
 
 ```
 
 <sup>1</sup> There are several reasons for setting parameters after the fact:
 
 1. Limitations of current .net CLI
-1. It's ability to parse/process complex values.
+1. Its ability to parse/process complex values
 1. Their business value (they are likely not known at the initial stages of the project)
-1. Their overall number (and the absence of defaults).
+1. Their overall number (and the absence of defaults)
 
 # Migration Guide
 

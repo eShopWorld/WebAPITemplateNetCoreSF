@@ -5,11 +5,12 @@ This template requires two levels of configuration
 - parameters for template execution.
 - parameters to set after the content has been generated<sup>1</sup>.
 
-Template recognizes three required params
+Template recognizes four required params
 
-- APIName - name of the API e.g. Fraud.API
-- APIPortNumber - port number e.g. 15000
-- APIHttpsPortNumber - port number for HTTPS traffic e.g. 15001 (must be different than APIPortNumber)
+- APINamespace - namespace of the API, e.g.: Eshopworld.Payments
+- APIName - name of the API, e.g.: FraudAPI
+- APIPortNumber - port number, e.g.: 15000
+- APIHttpsPortNumber - port number for HTTPS traffic, e.g.: 15001 (must be different from APIPortNumber)
 
 The other (post generation) attributes are
 
@@ -17,7 +18,7 @@ The other (post generation) attributes are
 - version prefix in swagger endpoint (also in Startup.cs)
 - port in service manifest (see ServiceManifest.xml in API project)
 - AppInsights instrumentation key for the app and the internal one for BigBrother (see appsettings json file corresponding to the target environment (e.g appsettings.Production.json) -see "TBA" values
- - STS configuration - see appsettings json corresponding to the environment - see ServiceConfigurationOptions node and values of "TBA"
+- STS configuration - see appsettings json corresponding to the environment - see ServiceConfigurationOptions node and values of "TBA"
 
 # Installation guide
 
@@ -102,7 +103,7 @@ To avoid duplicate code in controllers, structure your code so that common artif
 Install the template locally
 ```shell
 
-dotnet new -i [path to the dir of the .template.config file]
+dotnet new -i [path to the .nupkg file]
 
 ```
 
@@ -110,16 +111,16 @@ Uninstall the template locally
 
 ```shell
 
-dotnet new -u [path to the dir of the .template.config file]
+dotnet new -u [package identifier]
 
 ```
 
 <sup>1</sup> There are several reasons for setting parameters after the fact:
 
 1. Limitations of current .net CLI
-1. Its ability to parse/process complex values.
+1. Its ability to parse/process complex values
 1. Their business value (they are likely not known at the initial stages of the project)
-1. Their overall number (and the absence of defaults).
+1. Their overall number (and the absence of defaults)
 
 # Migration Guide
 

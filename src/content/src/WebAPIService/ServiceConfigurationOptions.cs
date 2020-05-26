@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WebAPIService
+namespace APINamespace
 {
     /// <summary>
     /// The configuration settings for this service

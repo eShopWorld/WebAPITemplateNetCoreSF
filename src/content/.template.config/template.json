@@ -1,12 +1,20 @@
 {
 	"$schema": "http://json.schemastore.org/template",
-	"author": "Derek Goslin, Oisin Haken, David Guerin",
+	"author": "Derek Goslin, Oisin Haken, David Guerin, Antonino Parisi",
 	"classifications": [ "Web", "WebAPI" ],
 	"identity": "Eshopworld.WebAPIFabric.Template",
 	"name": "EshopWorld Web API Service Fabric hosted ASP.NET Core 3.1 template",
 	"shortName": "ESWWebAPI",
 	"symbols": 
 	 {
+		"APINamespace":
+		{
+			"type": "parameter",
+			"datatype": "string",			
+			"replaces": "APINamespace",
+			"fileRename": "APINamespace",
+			"isRequired": true
+		},
 		"APIName": 
 		{
 			"type": "parameter",

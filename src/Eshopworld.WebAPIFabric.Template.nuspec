@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Eshopworld.WebAPIFabric.Template</id>
-    <version>2.0.2</version>
+    <version>2.1.0</version>
 	<icon>icon.png</icon>
     <description>
      Template for C# Web API Projects hosted on Microsoft Service Fabric.
     </description>
-    <releaseNotes>Downgrade of Microsoft.Extensions.Configuration.AzureKeyVault</releaseNotes>
-    <authors>Derek Goslin, Oisin Haken, David Guerin</authors>
+    <releaseNotes>Allow dotted naming within namespace definition</releaseNotes>
+    <authors>Derek Goslin, Oisin Haken, David Guerin, Antonino Parisi</authors>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>

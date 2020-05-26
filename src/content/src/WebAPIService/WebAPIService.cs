@@ -12,7 +12,7 @@ using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace WebAPIService
+namespace APINamespace
 {
     /// <summary>
     /// The FabricRuntime creates an instance of this class for each service type instance. 

@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("WebServiceAPI.Tests")]
+[assembly:InternalsVisibleTo("APINamespace.WebAPIService.Tests")]

@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json.schemastore.org/template",
-	"author": "Derek Goslin, Oisin Haken, David Guerin",
+	"author": "Derek Goslin, Oisin Haken, David Guerin, Antonino Parisi",
 	"classifications": [ "Web", "WebAPI" ],
 	"identity": "Eshopworld.WebAPIFabric.Template",
 	"name": "EshopWorld Web API Service Fabric hosted ASP.NET Core 3.1 template",
@@ -10,22 +10,38 @@
 		"APIName": 
 		{
 			"type": "parameter",
-			"datatype": "string",			
+			"dataType": "string",			
 			"replaces": "WebAPIService",
 			"fileRename": "WebAPIService",
 			"isRequired": true
 		},
+		"DottedAPIName": 
+		{
+			"type": "generated",
+			"generator": "regex",
+			"dataType": "string",
+			"replaces": "WebAPIService",
+			"parameters": {
+			  "source": "APIName",
+			  "steps": [
+				{
+				  "regex": "\\.",
+				  "replacement": ""
+				}
+			  ]
+			}
+		},
 		"APIPortNumber": 
 		{
 			"type": "parameter",
-			"datatype": "integer",
+			"dataType": "integer",
 			"isRequired": true,
 			"replaces": "WebAPIServicePort"
 		},
 		"APIHttpsPortNumber": 
 		{
 			"type": "parameter",
-			"datatype": "integer",
+			"dataType": "integer",
 			"isRequired": true,
 			"replaces": "WebHttpsAPIServicePort"
 		}

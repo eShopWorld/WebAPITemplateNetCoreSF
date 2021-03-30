@@ -1,3 +1,13 @@
+---
+# OBSOLETE
+
+**Attention ESW users**
+
+This package has been retired. Please Use Esw.Platform.AppTemplates off the EVO Feed on Azure DevOps.
+
+---
+
+
 # Configuration guide
 
 This template requires two levels of configuration 
